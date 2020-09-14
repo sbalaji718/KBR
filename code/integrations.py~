@@ -1,0 +1,459 @@
+import rebound
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import random
+import csv
+import pdb
+import glob
+import time 
+#import tqdm    
+import os as osp       
+import shutil
+import itertools
+
+
+def moveAndCreateDir(sPath, dstDir):
+    if not osp.path.isdir(dstDir):
+        osp.makedirs(dstDir)
+        shutil.move(sPath,dstDir)
+        #print("created directory {} and moved it to {}".format(sPath, dstDir))
+    else:
+    	# print("directory already exists")
+    	pass
+
+def prob(i):
+    sigma_i = 15.*np.pi/180.  # average 15 degrees
+    prob_i = np.sin(i)*np.exp(-i**2/(2.0*sigma_i**2))
+    return(prob_i)
+
+def get_i():
+    keep = False
+    
+    while keep == False:
+        num = np.random.uniform()*np.pi  # pick an inclination
+        
+        if np.random.uniform() < prob(num):  # decide whether to keep the inclination
+            keep = True
+
+    return(num)
+
+def long_integration(i, minA, maxA, minE, maxE, maxI, totalTime, intervalTime, Nparticles):
+    
+
+    """runs an nbody integrationfor the giant planets + Nparticles test particles. 
+    It goes for totalTime year
+    it returns minA, maxA, minE, maxE and creates a bin file with the simulation archive
+    """
+    
+    start_time = time.time()
+    tm = time.gmtime()
+    dat= time.strftime("%b%d%Y.%H.%M", tm)        
+
+    base = 30*(3./2.)**(2./3.) #~39AU
+
+    minQ = (minA*(1.-maxE))            #Perihelion distance
+    maxQ = (maxA*(1.+maxE))            #Apehelion distance
+    maxI =  maxI*(np.pi/180)           #maximum inclination argument 
+
+    sim = rebound.Simulation()
+    sim.units = ('yr', 'AU', 'Msun')
+    print("starting integration {}".format(i))
+
+    print("set units as yr, AU, Msun")
+    print("Integration is running for {} years for giant planets plus {} test particles".format(totalTime, Nparticles))
+
+    #this is a file with m, r, x, y, z, vx, vy, vz for sun and giant planets
+    # they are barycenter values from NASA Horizons
+    with open('planetParamsCartesianAU_yr.txt', 'r') as file:
+        data = file.read()
+
+    sim.add_particles_ascii(data)
+
+    print("---added sun, jupiter, saturn, uranus, neptune---")
+
+    np.random.seed(i)
+
+    """
+    #even e range
+    for p in range(Nparticles):
+        sim.add(a=np.random.uniform(minA, maxA), e=np.random.uniform(minE,maxE), inc=np.random.uniform(0,maxI), omega=np.random.rand()*(2.*np.pi),Omega=np.random.rand()*(2.*np.pi),M=np.random.rand()*(2.*np.pi))
+    """
+
+    #even q range
+    for p in range(Nparticles):
+# set seed
+        sem = np.random.uniform(minA,maxA)
+# set seed
+        ecc = 1-(np.random.uniform(0, sem))/sem 
+        sim.add(a=sem, e=ecc, inc= get_i(), omega=np.random.uniform(0,2*np.pi),Omega=np.random.uniform(0, 2*np.pi),M=np.random.uniform(0,2*np.pi)) 
+
+    sim.dt = 0.2
+    sim.integrator = 'whfast'
+    sim.ri_whfast.safe_mode = 0
+    sim.ri_whfast.corrector = 11 
+    sim.move_to_com()            # move particles to center of momentum frame
+    sim.N_active = 5             # number of active massive particles, includes Sun
+
+    #sim.status()
+
+    #the following code should be set up on first use to locate and store your simulations
+    sourcePath = '/data/galadriel/ahr/kboTest/code/' 
+    destinPath = '/data/galadriel/ahr/kboTest/Long_Integrations/'
+
+    # def heartbeat(sim):         # verification that sim is running
+    #    print(sim.contents.t)
+    # sim.heartbeat = heartbeat
+
+    filename = '{}_part{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_0-{:.3f}_E_{:.3f}-{:.3f}_even_q_{}'.format(dat,Nparticles,minA,maxA,minQ,maxQ,maxI,minE,maxE,i)
+
+
+    sim.automateSimulationArchive('{}.bin'.format(filename), interval = intervalTime, deletefile = True)
+    sim.integrate(totalTime, exact_finish_time = 0)
+    # sim.status()
+    # figure out how to save bin file every interval step instead of when integration is over
+    # also, another way to check simulation is running instead of heartbeat?
+
+    print("long integration is done")
+
+
+    sourceFile = '{}{}.bin'.format(sourcePath,filename)
+    destDir    = '{}{}'.format(destinPath,filename)
+    moveAndCreateDir(sourceFile,destDir)
+
+    print("long Integration took {}".format(time.time() - start_time))
+
+    return minA, maxA, minE, maxE, maxI, Nparticles, totalTime, filename
+
+
+
+def short_integration(i, minA, maxA, minE, maxE, maxI, nParticles, startTime, shortTime, fileName):
+
+    start_simul_time = time.time()
+    ST = startTime   #this is the short integrations start time within the long integration (i.e. the snapshot we're using as initial conditions)
+    IT = shortTime   #this is the short integration run time.
+    ET = ST + IT
+    Ntotal = nParticles + 5
+    Nout = 1000
+    print("starting short integration {} with start time {}".format(i, startTime))
+
+    sTemp    = 'TemporaryDirectory_time_{}'.format(ST)
+    iRes     = 'In_Resonance'
+    nRes     = 'Not_In_Resonance'
+    sInt     = 'Short_Integrations'
+
+    #the following code should be set up on first use to locate and store your simulations
+
+    destinPath = '/data/galadriel/ahr/kboTest/Long_Integrations/'
+
+    longInt    = '{}{}/{}'.format(destinPath,fileName,fileName)
+    mainDir    = '{}{}/'.format(destinPath,fileName)
+    dirName    = '{}{}/{}'.format(destinPath,fileName,sInt)
+    subDirTemp = '{}{}/{}/{}'.format(destinPath,fileName,sInt,sTemp)
+    irDir      = '{}{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes)
+    nrDir      = '{}{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,nRes)
+
+    try: 
+        osp.mkdir(destinPath)
+        print('Directory',destinPath,'created.')
+    except FileExistsError: 
+        print('Directory',destinPath,'already exists.')    
+
+    try:
+        osp.mkdir(dirName)
+        print ('Directory',dirName,'created.')
+    except FileExistsError:
+        print("Directory",dirName,"already exists.")
+
+    try:
+        osp.mkdir(subDirTemp)
+        print ('Directory',subDirTemp,'created.')
+    except FileExistsError:
+        print("Directory",subDirTemp,"already exists.")
+
+    try:
+        osp.mkdir(irDir)
+        print ('Directory',irDir,'created.')
+    except FileExistsError:
+        print("Directory",irDir,"already exists.")
+
+    try:
+        osp.mkdir(nrDir)
+        print ('Directory',nrDir,'created.')
+    except FileExistsError:
+        print("Directory",nrDir,"already exists.")
+
+    sa = rebound.SimulationArchive('{}.bin'.format(longInt)) #names archive object 
+    #print(sa.tmax)
+    sim = sa.getSimulation(ST, mode = 'close')
+    #sim.units = ('yr','AU','Msun')
+    #sim.status()
+
+
+    # going to plot stuff here to check things? Not sure if actually helpful
+    # will delete if not helpful
+
+    timeForPlot = ST
+    npart = sim.N - sim.N_active
+    
+    ecc = np.zeros(npart)
+    ax = np.zeros(npart)
+    inc = np.zeros(npart)
+    
+    for i in range(npart):
+        ecc[i] = sim.particles[i+5].e
+        ax[i] = sim.particles[i+5].a
+        inc[i] = sim.particles[i+5].inc
+        
+        
+    arange = np.linspace(37,50)
+    fig, (p1, p2) = plt.subplots(1,2, figsize = (11,5))
+    p1.plot(ax, ecc, '.')
+    p2.plot(ax, inc, '.')
+    p1.plot(arange, 1-20/arange , '--', label = "r = 20AU")
+    p1.plot(arange, 1-25/arange , '--', label = "r = 25AU")
+    p1.plot(arange, 1-30/arange, '--', label = "r = 30AU")
+    p1.plot(arange, 1-35/arange, '--', label = "r = 35AU")
+    p1.vlines(minA,0, 1.1)
+    p1.vlines(maxA, 0,1.1)
+    p1.hlines(0.6, 37, 50)
+    p1.set_xlim(37, 50)
+    p1.set_ylim(0,1.1)
+    p1.set_title("a v e; t = {}".format(timeForPlot))
+    p1.set_xlabel("a [AU]")
+    p1.set_ylabel("e ")
+    p2.vlines(minA, 0, np.pi/2)
+    p2.vlines(maxA, 0, np.pi/2)
+    p2.set_xlim(37, 50)
+    p2.set_ylim(0,np.pi/2)
+    p2.set_title("a v i; t = {}".format(timeForPlot))
+    p2.set_xlabel("a [AU]")
+    p2.set_ylabel("i")
+    p1.legend()
+    plt.savefig('{}/ave_avi_plot'.format(subDirTemp))
+
+    t = np.linspace(ST,ET,Nout)
+    #print(t)
+
+    #-------actual short integration--------
+    l = np.zeros((Ntotal,Nout))
+    p = np.zeros((Ntotal,Nout))
+    a = np.zeros((Ntotal,Nout))
+    e = np.zeros((Ntotal,Nout))
+    lasc_node = np.zeros((Ntotal,Nout))
+    arg_peri = np.zeros((Ntotal,Nout))
+    t_anom = np.zeros((Ntotal,Nout))
+    incl = np.zeros((Ntotal,Nout))
+    phi = np.zeros((Ntotal,Nout))
+    M_anom = np.zeros((Ntotal,Nout))
+
+    mln_arr = []
+    mlp_arr = []
+    pj_arr = []
+    a_arr = []
+    e_arr = []
+    inc_arr = []
+    lasc_node_arr = []
+    arg_peri_arr = []
+    t_anom_arr = []
+    M_anom_arr = []
+
+
+    for i,times in enumerate(t):
+        sim.integrate(times, exact_finish_time = 0)
+        os = sim.calculate_orbits()
+        for j in range(Ntotal-1):
+            l[j][i] = os[j].l
+            p[j][i] = os[j].pomega
+            a[j][i] = os[j].a
+            e[j][i] = os[j].e
+            incl[j][i] = os[j].inc
+            lasc_node[j][i] = os[j].Omega 
+            arg_peri[j][i] = os[j].omega
+            t_anom[j][i] = os[j].f
+            M_anom[j][i] = os[j].M
+
+
+
+
+
+            #renaming values
+            mlp = l[j][i]
+            pj = p[j][i]
+            mln = l[3][i]
+            sem = a[j][i]
+            ecc = e[j][i]
+            inc = incl[j][i]
+            lan = lasc_node[j][i]
+            ap = arg_peri[j][i]
+            ta = t_anom[j][i]
+            ma = M_anom[j][i]
+
+
+
+            #appending to cleaned up arrays
+            mln_arr.append(mln)
+            mlp_arr.append(mlp)
+            pj_arr.append(pj)
+            a_arr.append(sem)
+            e_arr.append(ecc)
+            inc_arr.append(inc)
+            lasc_node_arr.append(lan)
+            arg_peri_arr.append(ap)
+            t_anom_arr.append(ta)
+            M_anom_arr.append(ma)
+
+
+            phi_temp = 3.*mlp - 2.*mln - pj   
+            phi[j][i] = phi_temp%(2*np.pi)
+
+    resonant_particles = []
+    count = 0        
+    for i in range(Ntotal-1):
+        phi_i = phi[i]
+        if (all(phi[i] < 355*np.pi/180) and all(phi[i] > 5*np.pi/180)):
+            #print(phi_i)
+            resonant_particles.append(i)
+            count +=1
+
+            #plt.figure(figsize=(15,10))
+            #plt.title('Resonant angle libration', fontsize = 24)
+            #plt.xlabel('Time(years)', fontsize = 18)
+            #plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+            #plt.scatter(t,phi_i, marker = '.',s = 10)
+            #plt.ylim(0, 2*np.pi)
+            #plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
+            #plt.clf()
+        with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, ST), "w+") as my_file:                               
+            for i in resonant_particles:
+                 my_file.write(str(i)+"\n")
+
+
+
+    nonresonant_particles = []
+    count_n = 0        
+    for j in range(Ntotal-1):
+        phi_n = phi[j]
+        if (any(phi[j] > 355*np.pi/180) and any(phi[j] < 5*np.pi/180)):
+            #print(phi_n)
+            nonresonant_particles.append(j)
+            count_n +=1
+
+            #plt.figure(figsize=(15,10))
+            #plt.title('Resonant angle circulation', fontsize = 24)
+            #plt.xlabel('Time(years)', fontsize = 18)
+            #plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+            #plt.scatter(t,phi_n, marker = '.',s = 10)
+            #plt.ylim(0,2*np.pi)
+            #plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
+            #plt.clf()
+        with open("{}/Particles_not_in_resonance_{}.txt".format(subDirTemp, ST), "w+") as my_file:                               
+            for i in nonresonant_particles:
+                my_file.write(str(i)+"\n")
+
+        #data array to put into survey simulator; cloned particles
+        #Location of giant planets and particles should match 
+
+    #getting theta of Neptune
+    xsim = sim.particles[4].x
+    ysim = sim.particles[4].y
+    #print(xsim,ysim)
+    theta_sim = np.arctan2(ysim,xsim)
+    #print(theta_sim)
+
+    #theta of Neptune from NASA horizons
+    xsur = 29.06807239827766   
+    ysur = -7.125912195043246
+    theta_sur = np.arctan2(ysur,xsur)
+    #print(theta_sur)
+
+    #difference of both angles
+    new_theta = theta_sim - theta_sur
+    #new theta is added to the lasc of all the giant planets and the test particles
+
+
+
+    A = []
+    E = []
+    I = []
+    N = []
+    P = []
+    M = []
+
+    for semimajor in a[resonant_particles]:
+        A.append(semimajor)
+    for eccentricity in (e[resonant_particles]):
+        E.append(eccentricity)
+    for inclination in (incl[resonant_particles]):
+        I.append(inclination)
+    for longitude in (lasc_node[resonant_particles]):
+        for l in longitude:
+            l += new_theta
+        N.append(longitude)    
+    for argument in (arg_peri[resonant_particles]):
+        P.append(argument)    
+    for mean in (M_anom[resonant_particles]):
+        M.append(mean)
+
+
+    A_iter = itertools.chain.from_iterable(A)
+    E_iter = itertools.chain.from_iterable(E)
+    I_iter = itertools.chain.from_iterable(I)
+    N_iter = itertools.chain.from_iterable(N)
+    P_iter = itertools.chain.from_iterable(P)
+    M_iter = itertools.chain.from_iterable(M)
+
+
+    A1 = list(A_iter)
+    E1 = list(E_iter)
+    I1 = list(I_iter)
+    N1 = list(N_iter)
+    P1 = list(P_iter)
+    M1 = list(M_iter)
+
+    data=np.transpose([A1,E1,I1,N1,P1,M1])
+    #print(data)
+    #print(len(data))
+
+
+    np.savetxt('{}/Survey_data'.format(subDirTemp),data,fmt='%s')
+
+    res_plot_data = []
+    nonres_plot_data = []
+
+
+
+    #time = ae plot
+    ar = []
+    er = []
+    ir = []
+    for i in a[resonant_particles]:
+        ar.append(i[0])
+    for j in e[resonant_particles]:
+        er.append(j[0])
+    for k in incl[resonant_particles]:
+        ir.append(k[0])  
+    res_plot_data.append(ar) 
+    res_plot_data.append(er) 
+    res_plot_data.append(ir)  
+    np.savetxt('{}/res_plot_data.txt'.format(subDirTemp), res_plot_data, fmt = '%s')
+
+    anr = []
+    enr = []
+    inr = []
+    for i in a[nonresonant_particles]:
+        anr.append(i[0])
+    for j in e[nonresonant_particles]:
+        enr.append(j[0])
+    for k in incl[nonresonant_particles]:
+        inr.append(k[0])
+    nonres_plot_data.append(anr) 
+    nonres_plot_data.append(enr) 
+    nonres_plot_data.append(inr)  
+    np.savetxt('{}/nonres_plot_data.txt'.format(subDirTemp), nonres_plot_data, fmt = '%s')
+
+ 
+    return sim
+
+

@@ -1,0 +1,50 @@
+import multiprocessing as mp
+import numpy as np
+import subprocess
+import concurrent.futures
+import os
+from integrations import long_integration, short_integration
+
+
+
+# create files that we are going to append data to
+# that is done here
+
+
+
+# run integrations
+# this works but they run once the other one is done, so using multiprocess instead
+# p0 = subprocess.run(['python', 'do_integration.py'])
+# p1 = subprocess.run(['python', 'do_integration.py'])
+# p2 = subprocess.run(['python', 'do_integration.py'])
+# p3 = subprocess.run(['python', 'do_integration.py'])
+# p4 = subprocess.run(['python', 'do_integration.py'])
+# p5 = subprocess.run(['python', 'do_integration.py'])
+
+#try multiprocessing
+
+# make function needed for multiprocessing
+def do_integration(intN):
+	# first do long integration 
+	# arguments are i, minA, maxA, minE, maxE, maxI, totalTime, intervalTime, Nparticles
+	# returns minA, maxA, minE, maxE, maxI, Nparticles, totalTime, filename
+	amin, amax, emin, emax, imax, nParticles, totTime, filname = long_integration(intN, 38.81, 39.81, 0.0, 0.6, 35.0, 1e6, 1e4, 10)
+
+	#now do short integration
+	# arguments:i, xminA, maxA, minE, maxE, maxI, nParticles, startTime, shortTime, fileName
+	# return sim right now
+	# we want to do 3 short integrations starting with time 0, 10%totalTime, and totalTime
+	shortSim0 = short_integration(intN, amin, amax, emin, emax, imax, nParticles, 0, 1e5, filname)
+	shortSim1 = short_integration(intN, amin, amax, emin, emax, imax, nParticles, 0.1*totTime, 1e5, filname)
+	shortSim2 = short_integration(intN, amin, amax, emin, emax, imax, nParticles, totTime, 1e5, filname)
+
+	return filname
+
+
+#multiprocessing try 2
+
+args = np.arange(2)
+
+with mp.Pool(2) as pool:
+    results = pool.map(do_integration,args)
+
