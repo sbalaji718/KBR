@@ -13,14 +13,15 @@ def do_integration(intN):
         # first do long integration 
         # arguments are i, minA, maxA, minE, maxE, maxI, totalTime (exponent), Nparticles, max_exit_distance
         # returns minA, maxA, minE, maxE, maxI, Nparticles, totalTime, filename
+        dat = 'Sep162020.17.48'
         amin = 38.81
         amax = 39.95
         emin = 0.0
         emax = 0.6
         imax = 35.0
         maxD = 85
-        nParticles = 500
-        totTime = 7
+        nParticles = 100
+        totTime = 6
         
         
         #amin, amax, emin, emax, imax, maxD, nParticles, totTime, filename = long_integration(intN, amin, amax, emin, emax, imax, totTime, nParticles, maxD)
@@ -30,21 +31,21 @@ def do_integration(intN):
         # return sim right now
         # we want to do 3 short integrations starting with time 0, 10%totalTime, and totalTime
         
-        filename = 'Sep052020.18.32_part500_time10000000_A_38.810-39.950_Q_15.524-63.920_I_0-0.611_E_0.000-0.600_even_q_0'.format(intN)
-        shortSim0 = short_integration(nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e5, filename, 0)
-        shortSim1 = short_integration(nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e5, filename, -2)
-        shortSim2 = short_integration(nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e5, filename, -1)
+        filename = '{}_part100_time1000000_A_38.810-39.950_Q_15.524-63.920_I_35.000_E_0.000-0.600_even_q_{}'.format(dat,intN)
+        #shortSim0 = short_integration(dat,nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e5, filename, 0)
+        #shortSim1 = short_integration(dat,nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e5, filename, -2)
+        #shortSim2 = short_integration(dat,nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e5, filename, -1)
        
-        #kozaiShortInt1 = kozai_check(nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 5e7, filename, 0)
-        #kozaiShortInt2 = kozai_check(nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 5e7, filename, -1) 
-        #kozaiShortInt3 = kozai_check(nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 5e7, filename, -2)
+        kozaiShortInt1 = kozai_check(dat, nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e7, filename, 0)
+        kozaiShortInt2 = kozai_check(dat, nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e7, filename, -1) 
+        kozaiShortInt3 = kozai_check(dat, nParticles, totTime, intN, amin, amax, emin, emax, imax, maxD, 1e7, filename, -2)
         
         return filename
 
 
 #multiprocessing 
 #when we run this code, change this number. It determines how many parallel processes are happening
-lenInt = 2
+lenInt = 1
 
 args = np.arange(lenInt)
 
