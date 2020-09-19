@@ -116,20 +116,24 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
     #sim.status()
 
     #the following code should be set up on first use to locate and store your simulations
-    master_dir = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q_{}'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE)
+    master_dir = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE)
+    
+
     filename = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q_{}'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE,i)
     
     
-    sourcePath = '/data/galadriel/Sricharan/code/' 
-    destinPath = '/data/galadriel/Sricharan/Long_Integrations/{}'.format(master_dir)
-
-    #def heartbeat(sim):         # verification that sim is running
+    sourcePath = '/data/galadriel/Sricharan/KBO/KBR/code/' 
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/{}/'.format(master_dir)
+    #print(destinPath)
+    
+    
+    
+    #----------------verification that sim is running------------------
+    #def heartbeat(sim):         
     #   print(sim.contents.t)
     #sim.heartbeat = heartbeat
     
     
-
-
     #--------Automated Simulation Archive--------
     #sim.automateSimulationArchive('{}.bin'.format(filename), interval = intervalTime, deletefile = True)
     #sim.integrate(totalTime, exact_finish_time = 0)
@@ -160,7 +164,7 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
         sim.simulationarchive_snapshot('{}.bin'.format(filename))
 
     print("long integration is done")
-    
+   
     try: 
         osp.mkdir(destinPath)
         print('Directory',destinPath,'created.')
@@ -190,15 +194,15 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
     print("long Integration took {}".format(time.time() - start_time))
         
      
-    return minA, maxA, minE, maxE, maxI, maxDistance, Nparticles, totalTime, filename
+    return minA, maxA, minE, maxE, imax, maxDistance, Nparticles, totalTime, filename
 
 
 
-def short_integration(Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, maxDistance, shortTime, fileName, indexSimulation):
+def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, maxDistance, shortTime, fileName, indexSimulation):
 
     start_simul_time = time.time()
-    tm = time.gmtime()
-    dat= time.strftime("%b%d%Y.%H.%M", tm) 
+    #tm = time.gmtime()
+    #dat= time.strftime("%b%d%Y.%H.%M", tm) 
     
     minQ = (minA*(1.-maxE))           
     maxQ = (maxA*(1.+maxE))
@@ -206,13 +210,13 @@ def short_integration(Nparticles, totalExpTime, integrationN, minA, maxA, minE, 
     
     
     #the following code should be set up on first use to locate and store your simulations
-    master_dir = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q_{}'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE)
+    master_dir = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE)
     
-    destinPath = '/data/galadriel/Sricharan/Long_Integrations/{}'.format(master_dir)
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/{}/'.format(master_dir)
     #destinPath = '/data/galadriel/Sricharan/Long_Integrations/'
 
     longInt    = '{}{}/{}'.format(destinPath,fileName,fileName)
-
+    print(longInt)
     sa = rebound.SimulationArchive("{}.bin".format(longInt)) #names archive object 
     sim = sa[indexSimulation] ## see comment above for this 
     ST = sim.t             #(the snapshot time we're using as initial conditions)
@@ -452,7 +456,6 @@ def short_integration(Nparticles, totalExpTime, integrationN, minA, maxA, minE, 
     for particle in range(len(l)):
         data_arr.append([])   
         for integration in range(len(l[0])):
-            #print("Integration: " + str(integration) + "Num: " + str(num))
             data_arr[particle].append(hashesParticles[particle])
             data_arr[particle].append(a[particle][integration]) 
             data_arr[particle].append(e[particle][integration])
@@ -592,16 +595,22 @@ def short_integration(Nparticles, totalExpTime, integrationN, minA, maxA, minE, 
 
 
 
-def kozai_check(Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, maxDistance, shortTime, fileName, indexSimulation):
+def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, maxDistance, shortTime, fileName, indexSimulation):
     start_simul_time = time.time()
 
+    
+    minQ = (minA*(1.-maxE))           
+    maxQ = (maxA*(1.+maxE))
+    totalTime = 10**totalExpTime
+    
+    
     #the following code should be set up on first use to locate and store your simulations
-
-
-    destinPath = '/data/galadriel/Sricharan/Long_Integrations/'
+    master_dir = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE)
+    
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/{}/'.format(master_dir)
     
     longInt    = '{}{}/{}'.format(destinPath,fileName,fileName)
-    #print("{}.bin".format(longInt))
+    
     
     
     sa = rebound.SimulationArchive("{}.bin".format(longInt)) #names archive object 
@@ -678,9 +687,9 @@ def kozai_check(Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, 
         print("Directory",nrKoz,"already exists.")
     
     
-    #Test code below
+    #---------------------------Test code below----------------------------------
     
-    
+    """
     temp_dir = glob.glob( '{}Sep042020.02.04*/{}/{}'.format(destinPath,sInt,sTemp))
     #print(temp_dir)
     
@@ -712,8 +721,8 @@ def kozai_check(Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, 
             #particles.append(data.loc[j,'a'])
     #print(particles)
     
-        
-    
+    """  
+#-------------------------End test code-----------------------------    
         
         
     
