@@ -42,7 +42,7 @@ def get_i():
 
     return(num)
 
-def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, maxDistance):
+def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles):
     
 
     """runs an nbody integrationfor the giant planets + Nparticles test particles. 
@@ -74,7 +74,7 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
     # they are barycenter values from NASA Horizons
     with open('planetParamsCartesianAU_yr.txt', 'r') as file:
         data = file.read()
-
+        
     sim.add_particles_ascii(data)
 
     print("---added sun, jupiter, saturn, uranus, neptune---")
@@ -112,7 +112,7 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
     #sim.ri_whfast.corrector = 11 
     sim.move_to_com()            # move particles to center of momentum frame
     sim.N_active = 5             # number of active massive particles, includes Sun
-    sim.exit_max_distance = maxDistance
+    #sim.exit_max_distance = maxDistance
     #sim.status()
 
     #the following code should be set up on first use to locate and store your simulations
@@ -146,19 +146,19 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
     EscParticles = []
     for i,t in enumerate(realtimes):
         while sim.t < t:
-            try:
+            #try:
                 #print('Integrating for {} years'.format(t))
-                sim.integrate(t, exact_finish_time=0)
+            sim.integrate(t, exact_finish_time=0)
                 #print(sim.t)
-            except rebound.Escape as error:
+            #except rebound.Escape as error:
                 #print('A particle escaped at {} years'.format(sim.t))
-                for j in range(sim.N):
-                    p = sim.particles[j]
-                    dist = p.x*p.x + p.y*p.y + p.z*p.z
-                    if dist > sim.exit_max_distance**2:
-                        index = p.hash
-                sim.remove(hash=index)
-                EscParticles.append(index)
+                #for j in range(sim.N):
+                    #p = sim.particles[j]
+                    #dist = p.x*p.x + p.y*p.y + p.z*p.z
+                    #if dist > sim.exit_max_distance**2:
+                        #index = p.hash
+                #sim.remove(hash=index)
+                #EscParticles.append(index)
         print("done: {}".format(t))
         print("time passed: {}".format(time.time() - start_time))
         sim.simulationarchive_snapshot('{}.bin'.format(filename))
@@ -194,11 +194,11 @@ def long_integration(i, minA, maxA, minE, maxE, imax, totalExpTime, Nparticles, 
     print("long Integration took {}".format(time.time() - start_time))
         
      
-    return minA, maxA, minE, maxE, imax, maxDistance, Nparticles, totalTime, filename
+    return minA, maxA, minE, maxE, imax, Nparticles, totalTime, filename
 
 
 
-def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, maxDistance, shortTime, fileName, indexSimulation):
+def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, shortTime, fileName, indexSimulation):
 
     start_simul_time = time.time()
     #tm = time.gmtime()
@@ -216,7 +216,7 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
     #destinPath = '/data/galadriel/Sricharan/Long_Integrations/'
 
     longInt    = '{}{}/{}'.format(destinPath,fileName,fileName)
-    print(longInt)
+    #print(longInt)
     sa = rebound.SimulationArchive("{}.bin".format(longInt)) #names archive object 
     sim = sa[indexSimulation] ## see comment above for this 
     ST = sim.t             #(the snapshot time we're using as initial conditions)
@@ -224,6 +224,12 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
     print("particles N: {}".format(sim.N))
     # doing this just for naming purposes
 
+
+    #orbits = sim.calculate_orbits()
+    #for orbit in orbits:
+        #print(orbit)
+
+        
     sTemp    = 'TemporaryDirectory_time_{}'.format(np.round(ST))
     iRes     = 'In_Resonance'
     nRes     = 'Not_In_Resonance'
@@ -269,11 +275,10 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
 
 
     IT = np.round(shortTime)          #this is the short integration run time.
-    ET = np.round(ST + IT)
-    Ntotal = sim.N -1 #number of objects without the sun
+    ET = ST + IT
+    Ntotal = sim.N #number of objects without the sun
     npart = sim.N - sim.N_active # number of test particles
     Nout = 1000
-    sim.exit_max_distance = maxDistance
 
     print("starting short integration {} with start time {}".format(integrationN, ST))
     
@@ -286,6 +291,7 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
     print("now running short integration from {} with {} particles + giant planets + sun".format(sim.t, npart))
 
     intTimes = np.linspace(ST, ET, Nout)
+    #print(intTimes)
 
     ### ------------ where we are going to store values ----------------- #####
     # these are 2D matrices that store the values for each particle, for each timestep
@@ -320,40 +326,40 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
     y_arr = []
     z_arr = []
 
-    print(sim.exit_max_distance)
+    #print(sim.exit_max_distance)
 
     for i,times in enumerate(intTimes):
         while sim.t < times:
-            try:
-                sim.integrate(times, exact_finish_time = 0)
-            except rebound.Escape as error:
+            #try:
+            sim.integrate(times, exact_finish_time = 0)
+            #except rebound.Escape as error:
                 #print(error)
-                for part in range(sim.N):
-                    psim = sim.particles[part]
-                    dist = psim.x*psim.x + psim.y*psim.y + psim.z*psim.z
-                    if dist > sim.exit_max_distance**2:
-                        index = psim.hash
+                #for part in range(sim.N):
+                    #psim = sim.particles[part]
+                    #dist = psim.x*psim.x + psim.y*psim.y + psim.z*psim.z
+                    #if dist > sim.exit_max_distance**2:
+                        #index = psim.hash
     #                     print("particle with hash {} escaped".format(index))
-                sim.remove(hash=index)
+                #sim.remove(hash=index)
         for j, j_hash in enumerate(hashesParticles[1:]):
     #         print("j: {} ; hash: {}".format(j, j_hash))
-            try: 
-                ps = sim.particles[h(c_uint32(j_hash))]
-                l[j][i] = ps.calculate_orbit().l
-                p[j][i] = ps.calculate_orbit().pomega
-                a[j][i] = ps.calculate_orbit().a
-                e[j][i] = ps.calculate_orbit().e
-                incl[j][i] = ps.calculate_orbit().inc
-                lasc_node[j][i] = ps.calculate_orbit().Omega 
-                arg_peri[j][i] = ps.calculate_orbit().omega
-                t_anom[j][i] = ps.calculate_orbit().f
-                M_anom[j][i] = ps.calculate_orbit().M
-                xvals[j][i] = ps.x
-                yvals[j][i] = ps.y
-                zvals[j][i] = ps.z
-            except rebound.ParticleNotFound as error: 
+            #try: 
+            ps = sim.particles[h(c_uint32(j_hash))]
+            l[j][i] = ps.calculate_orbit().l
+            p[j][i] = ps.calculate_orbit().pomega
+            a[j][i] = ps.calculate_orbit().a
+            e[j][i] = ps.calculate_orbit().e
+            incl[j][i] = ps.calculate_orbit().inc
+            lasc_node[j][i] = ps.calculate_orbit().Omega 
+            arg_peri[j][i] = ps.calculate_orbit().omega
+            t_anom[j][i] = ps.calculate_orbit().f
+            M_anom[j][i] = ps.calculate_orbit().M
+            xvals[j][i] = ps.x
+            yvals[j][i] = ps.y
+            zvals[j][i] = ps.z
+            #except rebound.ParticleNotFound as error: 
                 # since particles escaping as we store/integrate
-                pass
+                #pass
     #             print("idk {}".format(error))
 
             #renaming values
@@ -398,7 +404,7 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
         phi_i = phi[i]
         if (all(phi[i] < 355*np.pi/180) and all(phi[i] > 5*np.pi/180)):
             resonant_particles.append(i)
-        with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w") as my_file:                               
+        with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
             for i in resonant_particles:
                  my_file.write(str(i)+"\n")
 
@@ -409,7 +415,7 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
         phi_n = phi[j]
         if (any(phi[j] > 355*np.pi/180) and any(phi[j] < 5*np.pi/180)):
             nonresonant_particles.append(j)
-        with open("{}/Particles_not_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w") as my_file:                               
+        with open("{}/Particles_not_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
             for i in nonresonant_particles:
                 my_file.write(str(i)+"\n")
 
@@ -475,9 +481,9 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
 
     data_arr = np.array(data_arr).reshape(len(l)*len(l[0]), 13) # (numParticles*numTimesteps, numOutputs)     
 
-    with open('{}/{}_data_array.csv'.format(subDirTemp,fileName), mode = 'w') as file:
+    with open('{}/{}_data_array.csv'.format(subDirTemp,fileName), mode = 'w+') as file:
         datawriter = csv.writer(file, delimiter = ',')
-        datawriter.writerow(['pnumber', 'a', 'e', 'i', 'Omega', 'w', 'f', 'phi', 'dTheta', 'x', 'y','z', 'resonance'])
+        datawriter.writerow(['pnumber', 'a', 'e', 'i', 'Omega', 'w', 'M_anom', 'phi', 'dTheta', 'x', 'y','z', 'resonance'])
         for d in data_arr:
             datawriter.writerow(d)
 
@@ -558,29 +564,53 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
     ar = []
     er = []
     ir = []
+    Or = []
+    omr = []
+    Mr = []
     for i in a[resonant_particles]:
         ar.append(i[0])
     for j in e[resonant_particles]:
         er.append(j[0])
     for k in incl[resonant_particles]:
-        ir.append(k[0])  
+        ir.append(k[0])
+    for l in lasc_node[resonant_particles]:
+        Or.append(l[0])
+    for m in arg_peri[resonant_particles]:
+        omr.append(m[0])
+    for n in M_anom[resonant_particles]:
+        Mr.append(n[0])    
     res_plot_data.append(ar) 
     res_plot_data.append(er) 
-    res_plot_data.append(ir)  
+    res_plot_data.append(ir) 
+    res_plot_data.append(Or) 
+    res_plot_data.append(omr) 
+    res_plot_data.append(Mr)  
     np.savetxt('{}/res_plot_data.txt'.format(subDirTemp), res_plot_data, fmt = '%s')
 
     anr = []
     enr = []
     inr = []
+    Onr = []
+    omnr = []
+    Mnr = []
     for i in a[nonresonant_particles]:
         anr.append(i[0])
     for j in e[nonresonant_particles]:
         enr.append(j[0])
     for k in incl[nonresonant_particles]:
         inr.append(k[0])
+    for l in lasc_node[nonresonant_particles]:
+        Onr.append(l[0])
+    for m in arg_peri[nonresonant_particles]:
+        omnr.append(m[0])
+    for n in M_anom[nonresonant_particles]:
+        Mnr.append(n[0])    
     nonres_plot_data.append(anr) 
     nonres_plot_data.append(enr) 
     nonres_plot_data.append(inr)  
+    nonres_plot_data.append(Onr) 
+    nonres_plot_data.append(omnr) 
+    nonres_plot_data.append(Mnr)
     np.savetxt('{}/nonres_plot_data.txt'.format(subDirTemp), nonres_plot_data, fmt = '%s')
 
     print('DONE!')
@@ -595,7 +625,7 @@ def short_integration(dat, Nparticles, totalExpTime, integrationN, minA, maxA, m
 
 
 
-def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, maxDistance, shortTime, fileName, indexSimulation):
+def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, shortTime, fileName, indexSimulation):
     start_simul_time = time.time()
 
     
@@ -616,10 +646,17 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
     sa = rebound.SimulationArchive("{}.bin".format(longInt)) #names archive object 
     sim = sa[indexSimulation] ## see comment above for this 
     ST = np.round(sim.t)             #(the snapshot time we're using as initial conditions)
+    
+    
     #print("simulation time: {}".format(ST))
     #print("particles N: {}".format(sim.N))
     # doing this just for naming purposes
+    
+    #sim = rebound.Simulation()
+    #sim.units = ('yr', 'AU', 'Msun')
 
+    
+        
     sTemp    = 'TemporaryDirectory_time_{}'.format(np.round(ST))
     iRes     = 'In_Resonance'
     nRes     = 'Not_In_Resonance'
@@ -638,7 +675,7 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
     irKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes,kozFiles,iKoz)
     nrKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes,kozFiles,nKoz)
     
-    try: 
+    try:
         osp.mkdir(destinPath)
         print('Directory',destinPath,'created.')
     except FileExistsError: 
@@ -689,63 +726,48 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
     
     #---------------------------Test code below----------------------------------
     
-    """
-    temp_dir = glob.glob( '{}Sep042020.02.04*/{}/{}'.format(destinPath,sInt,sTemp))
-    #print(temp_dir)
+    temp_dir = glob.glob('{}{}/{}/{}'.format(destinPath,dat,sInt,sTemp))
+    res_particles = glob.glob('{}{}*/{}/{}/Particles_in_resonance_{}.txt'.format(destinPath,dat,sInt,sTemp,ST))
     
-    res_particles = glob.glob( '{}Sep042020.02.04*/{}/{}/{}_data_array.csv'.format(destinPath,sInt,sTemp,fileName))
-    #print(res_particles)
+  
     
-        
-    #for i in res_particles:
-        #print(i)
-        #data_fil=pd.read_csv(i)
-        #print(data_fil)
-        
-    #particles = []
-    #for j in range(len(data_fil['resonance'])):
-        #if data_fil.loc[j,'resonance'] == 1:
-            #particles.append(data_fil.loc[j, 'pnumber'])
-    #print(len(particles[1000::1000]))
     
-            #print(j)               
-            #temp_a = data.loc[j+999,'a']
-            #temp_e = data.loc[j,'e']
-            #temp_i = data.loc[j,'i']
-            #temp_Omega = data.loc[j,'Omega']
-            #temp_w = data.loc[j,'w']
-            #temp_M = data.loc[j,'M_anom']
-            
-            #particles.append(j)
-        
-            #particles.append(data.loc[j,'a'])
-    #print(particles)
+    #files with resonant and nonresonant particles DO NOT include the Sun. Therefore zero indexed but shifted down one
     
-    """  
-#-------------------------End test code-----------------------------    
-        
+    for i in res_particles:
+        data = []
+        data_file = open(i, 'r')
+        for j in data_file.readlines():
+            data.append(int(j)+1)
+    
+    
+  
+    for part in range(len(sim.particles)-1, 4, -1):  
+        if part not in data:
+            sim.remove(part)
+            print('Particles {} removed'.format(part))        
+    
+    #print(sim.N)    
+   
         
     
     IT = shortTime          #this is the short integration run time.
     ET = ST + IT
-    Ntotal = sim.N -1 #number of objects without the sun
+    Ntotal = sim.N - 1 #number of objects without the sun
     npart = sim.N - sim.N_active # number of test particles
     Nout = 1000
-    sim.exit_max_distance = maxDistance
-    
-
-
    
-    
+   
     
     hashesParticles = np.zeros(sim.N,dtype="uint32")
     sim.serialize_particle_data(hash=hashesParticles)
     #print(hashesParticles)
 
-    print("now running short integration from {} with {} particles + giant planets + sun".format(sim.t, npart))
+    print("now running kozai short integration from {} with {} particles + giant planets + sun".format(sim.t, npart))
 
     intTimes = np.linspace(ST, ET, Nout)
-    
+    #print(ST)
+    #print(ET)
 
     ### ------------ where we are going to store values ----------------- #####
     # these are 2D matrices that store the values for each particle, for each timestep
@@ -777,21 +799,24 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
     M_anom_arr = []
     x_arr = []
     y_arr = []
-
-    print(sim.exit_max_distance)
-
+    
+    """
+    print('starting for loop')
+    #print(sim.exit_max_distance)
     for i,times in enumerate(intTimes):
         while sim.t < times:
+            print(sim.t, times)
             try:
                 sim.integrate(times, exact_finish_time = 0)
+                #print('in try function:'+ str(times))
             except rebound.Escape as error:
                 for part in range(sim.N):
                     psim = sim.particles[part]
                     dist = psim.x*psim.x + psim.y*psim.y + psim.z*psim.z
-                    if dist > sim.exit_max_distance**2:
-                        index = psim.hash
+                    #if dist > sim.exit_max_distance**2:
+                        #index = psim.hash
     #                     print("particle with hash {} escaped".format(index))
-                sim.remove(hash=index)
+                #sim.remove(hash=index)
         for j, j_hash in enumerate(hashesParticles[1:]):
     #         print("j: {} ; hash: {}".format(j, j_hash))
             try: 
@@ -811,7 +836,31 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
                 # since particles escaping as we store/integrate
                 pass
     #             print("idk {}".format(error))
-
+    
+    """
+    
+    
+    
+    for i,times in enumerate(intTimes):
+        #print(times)
+        sim.integrate(times, exact_finish_time = 0)
+        os = sim.calculate_orbits()
+        for j in range(sim.N-1):
+        
+            l[j][i] = os[j].l
+            p[j][i] = os[j].pomega
+            a[j][i] = os[j].a
+            e[j][i] = os[j].e
+            incl[j][i] = os[j].inc
+            lasc_node[j][i] = os[j].Omega 
+            arg_peri[j][i] = os[j].omega 
+            #lon_peri[j][i] = os[j].pomega % (2*np.pi)
+            t_anom[j][i] = os[j].f
+            M_anom[j][i] = os[j].M
+            xvals[j][i] = sim.particles[j].x
+            yvals[j][i] = sim.particles[j].y
+            #zvals[j][i] = sim.particles[j].z
+            
             #renaming values
             mlp = l[j][i]
             pj = p[j][i]
@@ -843,7 +892,8 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
 
             phi_temp = 3.*mlp - 2.*mln - pj   
             phi[j][i] = phi_temp%(2*np.pi)
-
+        
+   
     #print("done: after short int {} particles left".format(sim.N))
 
 
@@ -855,25 +905,20 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
     nonresonant_particles = []   
     kozai_particles = []
     nonkozai_particles = []
-           
+    
     for i in range(sim.N-1):
-        phi_i = phi[i]*180/np.pi
         kozai = arg_peri[i]*180/np.pi
-        if (all(phi[i] < 355/180*np.pi) and all(phi[i] > 5/180*np.pi)):            
-            #resonant_particles.append(i)
-            if ((all(kozai < 175) and all(kozai > 5)) or (all(kozai < 355) and all(kozai > 185))):
-                #print('KOZAI PARTICLE')
-                kozai_particles.append(i)
-            else:
-                nonkozai_particles.append(i)
+        if ((all(kozai < 175) and all(kozai > 5)) or (all(kozai < 355) and all(kozai > 185))):
+            kozai_particles.append(i)
         else:
-            #nonresonant_particles.append(i)
-            pass
-            
-    with open("{}/Particles_in_Kozai_{}.txt".format(kozDir, ST), "w+") as my_file:                               
+            nonkozai_particles.append(i)
+    
+    
+    
+    with open("{}/Particles_in_Kozai_{}.txt".format(kozDir, ST), "w") as my_file:                               
         for i in kozai_particles:
             my_file.write(str(i)+"\n")
-    with open("{}/Particles_not_in_Kozai_{}.txt".format(kozDir, ST), "w+") as my_file:                               
+    with open("{}/Particles_not_in_Kozai_{}.txt".format(kozDir, ST), "w") as my_file:                               
         for i in nonkozai_particles:
             my_file.write(str(i)+"\n")
     
@@ -914,12 +959,7 @@ def kozai_check(dat, Nparticles, totalExpTime, integrationN, minA, maxA, minE, m
     for l in arg_peri[nonkozai_particles]:
         onk.append(l)
     np.savetxt('{}/omega_nonkoz_data.txt'.format(kozDir), onk, fmt = '%s')
-    
-    
-   
-    
-        
-    
+     
      
     print('DONE!')    
     
