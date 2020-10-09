@@ -17,49 +17,46 @@ import pandas as pd
 
 start_time = time.time()
 
-datDate = 'Sep112020.17.33'
-#filename = '{}_part500_time10000000_A_38.810-39.950_Q_15.524-63.920_I_0-0.611_E_0.000-0.600_even_q_0'.format(datDate)
 
+datDate = 'Oct062020.17.55'
 
-#maybe these will become the arguments for function, haven't decided 
-
-Nparticles = 500           #Number of test particles
+Nparticles = 100           #Number of test particles
 Nout = 1000                 #Number of integrations
 Ntotal = Nparticles + 5  #Number of test particles + giant planets
 
-base = 30.*(3./2.)**(2./3.) #~39AU
-#print(base)
-
-b    = 1.2                         #changed the range of a to be larger (from +- 0.5 to +- 2.5)
-#minA = base - b                    #minimum semi-major axis distance     
-#maxA = base + b                    #maximum semi-major axis distance
 minA = 38.81
-maxA = 39.91
+maxA = 39.95
 minE = float(0.)                   #minimum eccentricity argument
 maxE = float(0.6)                   #maximum eccentricity argument
-minQ = (minA*(1.-maxE))            #Perihelion distance
-maxQ = (maxA*(1.+maxE))            #Apehelion distance
-maxI = 0.611                 #maximum inclination argument
+minQ = minA*(1.-maxE)          #Perihelion distance
+maxQ = maxA*(1.+maxE)           #Apehelion distance
+maxI = np.round(35,3)                #maximum inclination argument
+totalTime = int(1e7)
+short_time = 5e7
+intN= 0
+
+fileName = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q_{}'.format(datDate,Nparticles,totalTime,minA,maxA,minQ,maxQ,maxI,minE,maxE,intN)
 
 
 #making this a function instead to be able to call it for the different plots we want to make
 
-def create_kozai_plots(dat, ST):
+def create_kozai_plots(dat, ST, totalExpTime, integrationN, minA, maxA, minE, maxE, imax, shortTime, fileName, indexSimulation):
     """
     dat is the date of long integration that is to be used in Mmmddyyyy.HH.MM format
     ST is the start time of short integration 
     """
-
-    destinPath = '/data/galadriel/Sricharan/Long_Integrations/'
-
+    
+    master_dir = '{}_part{}_time{}_A_{:.3f}-{:.3f}_Q_{:.3f}-{:.3f}_I_{:.3f}_E_{:.3f}-{:.3f}_even_q'.format(dat,Nparticles,totalTime,minA,maxA,minQ,maxQ,imax,minE,maxE)
+    #print(master_dir)
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/{}/'.format(master_dir)
+    #print(destinPath)
     #can get a list of the directory names without having to write them all down using glob
     # only using dat to be what we use to pull the name. can change this is we want
-
-    fileDirectories = glob.glob("/data/galadriel/Sricharan/Long_Integrations/{}*".format(dat))
+    fileDirectories = glob.glob("/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/{}/{}*".format(master_dir, dat))
     #print(fileDirectories)
+ 
 
-
-   
+    
     sTemp    = 'TemporaryDirectory_time_{}'.format(np.round(ST))
     iRes     = 'In_Resonance'
     nRes     = 'Not_In_Resonance'
@@ -68,27 +65,105 @@ def create_kozai_plots(dat, ST):
     iKoz     = 'In_Kozai_Resonance'
     nKoz     = 'Not_In_Kozai_Resonance'
 
+    mainDir    = '{}{}/'.format(destinPath,fileName)
+    dirName    = '{}{}/{}'.format(destinPath,fileName,sInt)
+    subDirTemp = '{}{}/{}/{}'.format(destinPath,fileName,sInt,sTemp)
+    irDir      = '{}{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes)
+    nrDir      = '{}{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,nRes)
+    kozDir     = '{}{}/{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes,kozFiles)
+    irKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes,kozFiles,iKoz)
+    nrKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,fileName,sInt,sTemp,iRes,kozFiles,nKoz)
+    
+     
+    try:
+        osp.mkdir(irKoz)
+        print ('Directory',irKoz,'created.')
+    except FileExistsError:
+        print("Directory",irKoz,"already exists.")
 
+    try:
+        osp.mkdir(nrKoz)
+        print ('Directory',nrKoz,'created.')
+    except FileExistsError:
+        print("Directory",nrKoz,"already exists.")
+    
     #the following code should be set up on first use to locate and store your simulations
 
     
 
     subDirectoriesTemp = glob.glob( '{}{}*/{}/{}'.format(destinPath,dat,sInt,sTemp)) #now have list of directory names
-    #deleted the other stuff. Trying to make it things less manual, didn't need the other directories for now
-
-    #going to start the for loop here instead instead of creating these different arrays, will do it in the loop
-    # actually going a step further and just putting the plot_data.txt stuff into glob as well...
     
-    koz_plot_dat = glob.glob( '{}{}*/{}/{}/{}/{}/koz_plot_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
-    nonkoz_plot_dat = glob.glob( '{}{}*/{}/{}/{}/{}/nonkoz_plot_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
     
-    omega_dat = glob.glob( '{}{}*/{}/{}/{}/{}/omega_koz_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
-    nomega_dat = glob.glob( '{}{}*/{}/{}/{}/{}/omega_nonkoz_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
+    koz_index = glob.glob( '{}{}*/{}/{}/{}/{}/Particles_in_Kozai_{}.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles,ST))
+    nonkoz_index = glob.glob( '{}{}*/{}/{}/{}/{}/Particles_not_in_Kozai_{}.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles,ST))
     
-    IT = 5e7
+    koz_plot_data = glob.glob( '{}{}*/{}/{}/{}/{}/koz_plot_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
+    nonkoz_plot_data = glob.glob( '{}{}*/{}/{}/{}/{}/nonkoz_plot_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
+    
+    
+    omega_data = glob.glob( '{}{}*/{}/{}/{}/{}/omega_koz_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
+    nomega_data = glob.glob( '{}{}*/{}/{}/{}/{}/omega_nonkoz_data.txt'.format(destinPath,dat,sInt,sTemp,iRes,kozFiles))
+    
+    IT = 1e7
     ET = ST + IT 
     Nout = 1000
         
+    t = np.linspace(ST, ET, Nout) 
+    
+    
+    #Libration plots for particles in Kozai
+    for i in range(len(omega_data)):
+        content = np.genfromtxt('{}'.format(omega_data[i]))    
+        kozai_ind_list = np.genfromtxt('{}'.format(koz_index[i]))
+        kozai_ind_list = kozai_ind_list.astype(dtype = np.int32)
+        for j in range(len(content)):
+            plt.figure(figsize=(15,10))
+            plt.title('Particle {} in Kozai'.format(kozai_ind_list[j]), fontsize = 24)
+            plt.xlabel('Time(years)', fontsize = 18)
+            plt.ylabel('argument of pericenter (omega)')
+            plt.scatter(t,content[j]*180/np.pi,marker = '.', s = 10)
+            plt.ylim(0,360)
+            plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(irKoz,kozai_ind_list[j])) 
+    
+    #Libration plots for particles not in Kozai
+    for i in range(len(nomega_data)):
+        ncontent = np.genfromtxt('{}'.format(nomega_data[i]))    
+        nkozai_ind_list = np.genfromtxt('{}'.format(nonkoz_index[i]))
+        nkozai_ind_list = nkozai_ind_list.astype(dtype = np.int32)
+        for j in range(len(ncontent)):
+            plt.figure(figsize=(15,10))
+            plt.title('Particle {} in Kozai'.format(nkozai_ind_list[j]), fontsize = 24)
+            plt.xlabel('Time(years)', fontsize = 18)
+            plt.ylabel('argument of pericenter (omega)')
+            plt.scatter(t,ncontent[j]*180/np.pi,marker = '.', s = 10)
+            plt.xlim(ST, )
+            plt.ylim(0,360)
+            plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(nrKoz,nkozai_ind_list[j])) 
+    
+    
+    
+    
+    
+    
+    
+    """
+    for i in range(len(libplotArr)):
+        plt.figure(figsize=(15,10))
+        plt.title('Particle in Kozai', fontsize = 24)
+        plt.xlabel('Time(years)', fontsize = 18)
+        plt.ylabel('argument of pericenter (omega)')
+        plt.scatter(t,libplotArr[i]*180/np.pi,marker = '.', s = 10)
+        plt.ylim(0,360)
+        plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(irKoz,i))
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     libplotArr = []  
     nlibplotArr = []  
@@ -99,26 +174,34 @@ def create_kozai_plots(dat, ST):
     for omeg in omega_dat:
         #print(omeg)
         omegcontent = np.genfromtxt('{}'.format(omeg))
+        #print(len(omegcontent))
         omegcon = np.array(omegcontent)
-        #print(omegcon)
-    #currently only taking last omegcon list
+        #print(len(omegcon))
+    
+
+    
         for w in omegcon:
             libplotArr.append(w%(2*np.pi))
-        libplotArr = np.concatenate(libplotArr)  
+        #print(libplotArr)
+        #print(len(libplotArr))
+        #libplotArr = np.concatenate(libplotArr)  
  
     
     
-    #for nomeg in nomega_dat:
-        #nomegcontent = np.genfromtxt('{}'.format(nomeg))
-        #nomegcon = np.array(nomegcontent)
+    for nomeg in nomega_dat:
+        nomegcontent = np.genfromtxt('{}'.format(nomeg))
+        nomegcon = np.array(nomegcontent)
  
-    #for w in nomegcon:
+    for w in nomegcon:
         #print(w)
-        #nlibplotArr.append(w%(2*np.pi))
+        nlibplotArr.append(w%(2*np.pi))
     #nlibplotArr = np.concatenate(nlibplotArr)   
     
     t = np.linspace(ST, ET, Nout)  
-    """
+    
+    #print(len(t))
+    #print(len(libplotArr))
+    
     for i in range(len(libplotArr)):
         plt.figure(figsize=(15,10))
         plt.title('Particle in Kozai', fontsize = 24)
@@ -135,7 +218,7 @@ def create_kozai_plots(dat, ST):
         plt.title('Particle not in Kozai', fontsize = 24)
         plt.xlabel('Time(years)', fontsize = 18)
         plt.ylabel('argument of pericenter (omega)')
-        plt.scatter(t,nlibplotArr[i]*180/np.pi,marker = '.', s = 10)
+        plt.scatter(t,nlibplotArr*180/np.pi,marker = '.', s = 10)
         plt.ylim(0,360)
         plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(nrKoz,i))
     
@@ -244,15 +327,15 @@ def create_kozai_plots(dat, ST):
     plt.show()
     plt.savefig('/data/galadriel/Sricharan/Plotting_files/{}/evi_t={}.png'.format(dat, ST))
     plt.clf()
-
-   
-    return ST
     """
+    return ST
+    
     
 
 
 
-create_kozai_plots(datDate, 0.0)
-#create_kozai_plots(datDate, 1e6, filename)
-#create_kozai_plots(datDate, 1e7, filename)
+#create_kozai_plots(datDate, 0.0)
+#create_kozai_plots(datDate, 1e6, totTime, intN ,minA, maxA, minE, maxE, maxI, short_time, fileName, -1)
+create_kozai_plots(datDate, 1e7, totalTime, intN ,minA, maxA, minE, maxE, maxI, short_time, fileName, -1)
+
 
