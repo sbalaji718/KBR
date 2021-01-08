@@ -6,7 +6,6 @@ import os as osp
 import shutil
 import matplotlib.pyplot as plt
 from rebound import hash as h
-from ctypes import c_uint32
 import csv
 
 
@@ -124,15 +123,20 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     if not long_int_file:
         filename = '{}_part{}_time{}_A_{:.3f}-{:.3f}_iSig_{}_E_{:.3f}-{:.3f}_even_q_{}'.format(dat,
             Nparticles, sim_length, minA, maxA, 14, minE, maxE, int_count)
+        print("making new long integration file")
     else:
         filename = long_int_file
+        print("reading long integration file that already exists.")
 
-    # check to see if long int already exists. If so, nothing else needs to happen. If it doesn't then we continue with long integration
+    # check to see if long int already exists. If so, nothing else needs to happen. 
+    #If it doesn't then we continue with long integration
+
+    print("{}{}.bin".format(destinPath,filename))
 
     # ------- Manual Snapshots --------------------------
     try:
-        sim = rebound.Simulation("{}{}.bin".format(destinPath,filename))
-        print("tried loading simulation archive\n")
+        sim = rebound.Simulation("{}{}/{}.bin".format(destinPath,filename,filename))
+        print("successfully loaded simulation archive\n")
     except:
         print("failed to load simulation archive, loading initial conditions")
         sim = setupSimulationFromArchive(int_count, minA, maxA, minE, maxE, Nparticles)
@@ -212,6 +216,10 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
 
     tm = time.gmtime()
     dat= time.strftime("%b%d", tm)
+
+    # do this instead if you plan on running several short integrations 
+    # for the same long integration on the same day. so they don't overwrite eachother
+    # dat= time.strftime("%b%d.%H.%M", tm)
     
     destinPath = '/Users/arceliahermosillo/Research/KBR/Long_Integrations/'
     longInt    = '{}{}/{}'.format(destinPath,filename,filename)
@@ -412,7 +420,6 @@ def check_resonance_make_plots(short_filename):
     for particle in range(len(lam)):
         data_arr.append([])   
         for integration in range(len(lam[0])):
-            #print("Integration: " + str(integration) + "Num: " + str(num))
             data_arr[particle].append(hashesParticles[particle])
             data_arr[particle].append(peri[particle][integration])
             data_arr[particle].append(ax[particle][integration]) 
@@ -441,43 +448,7 @@ def check_resonance_make_plots(short_filename):
            datawriter.writerow(d)
 
     return 0
-
     """
-    #data array
-    data_arr = []
-
-    for particle in range(len(l)):
-        data_arr.append([])   
-        for integration in range(len(l[0])):
-            #print("Integration: " + str(integration) + "Num: " + str(num))
-            data_arr[particle].append(hashesParticles[particle])
-            data_arr[particle].append(peri[particle][integration])
-            data_arr[particle].append(a[particle][integration]) 
-            data_arr[particle].append(e[particle][integration])
-            data_arr[particle].append(incl[particle][integration])
-            data_arr[particle].append(lasc_node[particle][integration])
-            data_arr[particle].append(arg_peri[particle][integration])
-            data_arr[particle].append(M_anom[particle][integration])
-            data_arr[particle].append(t_anom[particle][integration])
-            data_arr[particle].append(phi[particle][integration])
-            data_arr[particle].append(rotated_longitude[particle][integration])
-            data_arr[particle].append(phiAmp[particle])
-            data_arr[particle].append(xvals[particle][integration])
-            data_arr[particle].append(yvals[particle][integration])
-            if particle in resonant_particles:
-                data_arr[particle].append(True)
-            else:
-                data_arr[particle].append(False)   
-
-    data_arr = np.array(data_arr).reshape(len(l)*len(l[0]), 15) # (numParticles*numTimesteps, numOutputs)     
-
-    #with open('{}/{}_data_array_{}.csv'.format(subDirTemp,filename, ST), mode = 'w') as file:
-    #    datawriter = csv.writer(file, delimiter = ',')
-    #    datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
-     #   for d in data_arr:
-     #       datawriter.writerow(d)
-
-
 
 
 
