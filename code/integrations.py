@@ -4,10 +4,10 @@ import random
 import time 
 import os as osp       
 import shutil
-import itertools
+import matplotlib.pyplot as plt
 from rebound import hash as h
 from ctypes import c_uint32
-
+import csv
 
 
 def moveAndCreateDir(sPath, dstDir):
@@ -225,7 +225,7 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
     IT = sim_length         #this is the short integration run time.
     ET = ST + IT
     Nout = 1000
-    Ntotal = sim.N -1 #number of objects without the sun
+    Nparticles = sim.N -1 #number of objects without the sun
     npart = sim.N - sim.N_active # number of test particles
     # sim.exit_max_distance = maxDistance
 
@@ -241,25 +241,53 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
 
     # then make a function that checks for resonance and makes a few plots
 
-def check_resonance(short_filename, Nparticles, Nout):
+def check_resonance_make_plots(short_filename):
     print(short_filename)
     short_bin = rebound.SimulationArchive("{}/{}".format(subDirTemp,short_filename))
 
-    ax = np.zeros((5+Nparticles,Nout+1))
-    ecc = np.zeros((5+Nparticles,Nout+1))
-    inc = np.zeros((5+Nparticles,Nout+1))
-    lam = np.zeros((5+Nparticles,Nout+1))
-    pom = np.zeros((5+Nparticles,Nout+1))
-    phi = np.zeros((5+Nparticles,Nout+1))
+    print("short_bin")
+    print(short_bin)
 
-    time = np.zeros(Nout+1)
+    print("short_bin[-1]")
+    print(short_bin[-1])
 
-    # record values into arrays
+    Nparticles = short_bin[-1].N
+    Nout = len(short_bin)
+    ST = short_bin.tmax
 
+    print("Nparticles: {}".format(Nparticles))
+    print("Nout: {}".format(Nout))
+    print("ST: {}".format(ST))
+
+
+    ################### ------------- arrays to record values ------------ #####################
+
+    ax  = np.empty((Nparticles,Nout))
+    ecc = np.empty((Nparticles,Nout))
+    inc = np.empty((Nparticles,Nout))
+    lam = np.empty((Nparticles,Nout))
+    pom = np.empty((Nparticles,Nout))
+    phi = np.zeros((Nparticles,Nout))
+
+    lasc_node = np.empty((Nparticles,Nout))
+    arg_peri = np.empty((Nparticles,Nout))
+    t_anom = np.empty((Nparticles,Nout))
+    M_anom = np.empty((Nparticles,Nout))
+    peri = np.empty((Nparticles,Nout))
+    xvals = np.empty((Nparticles,Nout))
+    yvals = np.empty((Nparticles,Nout))
+
+    deltaTheta = np.empty((Nparticles, Nout)) # needed to make rotation to observed Neptune frame
+
+
+    time = np.empty(Nout)
+
+    ######################--------------- record values into arrays ------####################
+    ct = 0
     for i, sim in enumerate(short_bin):
+        ct += 1
         n = sim.N
-        print(sim.N)
-        print(len(short_bin))
+        # print(len(short_bin))
         hashesParticles = np.zeros(sim.N,dtype="uint32")
         sim.serialize_particle_data(hash=hashesParticles)
         time[i] = sim.t
@@ -267,305 +295,47 @@ def check_resonance(short_filename, Nparticles, Nout):
         for j in range(n-1):
             p = sim.particles[j+1]
             o = p.calculate_orbit(com)
-            print(p.hash.value)
+            # print("hash: {}".format(p.hash.value))
             ax[p.hash.value][i] = o.a
             ecc[p.hash.value][i] = o.e
             inc[p.hash.value][i] = o.inc
             lam[p.hash.value][i] = o.l
             pom[p.hash.value][i] = o.pomega
-            phi[p.hash.value][i] = (3*lam[p.hash.value][i] - 2*lam[5][i] - pom[p.hash.value][i])%(2*np.pi)
+            lasc_node[p.hash.value][i] = o.Omega
+            arg_peri[p.hash.value][i] = o.omega
+            t_anom[p.hash.value][i] = o.f 
+            M_anom[p.hash.value][i] = o.M 
+            peri[p.hash.value][i] = ax[p.hash.value][i]*(1- ecc[p.hash.value][i])
+            xvals[p.hash.value][i] = p.x 
+            yvals[p.hash.value][i] = p.y
 
-    print(ax.shape)
-    print(phi.shape)
-
-    Ntotal = Nparticles + 4 #test particles + planets
-
-    # now check for resonance
-
-    # resonant_particles = []
-    count = 0   
-    count_n = 0     
-    for i in range(Ntotal):
-        if (all(phi[i] < 355*np.pi/180) and all(phi[i] > 5*np.pi/180)):
-            # resonant_particles.append(i)
-            count +=1
-
-            #plt.figure(figsize=(15,10))
-            #plt.title('Resonant angle libration', fontsize = 24)
-            #plt.xlabel('Time(years)', fontsize = 18)
-            #plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-            #plt.scatter(intTimes,phi_i, marker = '.',s = 10)
-            #plt.ylim(0, 2*np.pi)
-            #plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
-            #plt.clf()
-        else: count_n +=1
-
-
-    # with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
-    #     for i in resonant_particles:
-    #          my_file.write(str(i)+"\n")
-    print("{} particles in resonance".format(count))
-
-
-
-    # nonresonant_particles = []
-    # count_n = 0        
-    # for j in range(Ntotal):
-    #     if (any(phi[j] > 355*np.pi/180) and any(phi[j] < 5*np.pi/180)):
-    #         # nonresonant_particles.append(j)
-    #         count_n +=1
-
-            #plt.figure(figsize=(15,10))
-            #plt.title('Resonant angle circulation', fontsize = 24)
-            #plt.xlabel('Time(years)', fontsize = 18)
-            #plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-            #plt.scatter(intTimes,phi_n, marker = '.',s = 10)
-            #plt.ylim(0,2*np.pi)
-            #plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
-            #plt.clf()
-
-    # with open("{}/Particles_not_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
-    #     for i in nonresonant_particles:
-    #         my_file.write(str(i)+"\n")
-    print("{} particles not in resonance".format(count_n))
-
-    return 0
-
-
-"""
-    ecc = np.zeros(npart)
-    ax = np.zeros(npart)
-    inc = np.zeros(npart)
     
-    for i in range(npart):
-        ecc[i] = sim.particles[i+5].e
-        ax[i] = sim.particles[i+5].a
-        inc[i] = sim.particles[i+5].inc
-        
+    # calculate phi and deltaTheta here since need fully recorded arrays
+    for i, sim in enumerate(short_bin):
+        n = sim.N
+        for j in range(n):
 
-    arange = np.linspace(37,50)
-    fig, (p1, p2) = plt.subplots(1,2, figsize = (11,5))
-    p1.plot(ax, ecc, '.')
-    p2.plot(ax, inc, '.')
-    p1.plot(arange, 1-20/arange , '--', label = "r = 20AU")
-    p1.plot(arange, 1-25/arange , '--', label = "r = 25AU")
-    p1.plot(arange, 1-30/arange, '--', label = "r = 30AU")
-    p1.plot(arange, 1-35/arange, '--', label = "r = 35AU")
-    p1.vlines(minA,0, 1.1)
-    p1.vlines(maxA, 0,1.1)
-    p1.hlines(0.6, 37, 50)
-    p1.set_xlim(37, 50)
-    p1.set_ylim(0,1.1)
-    p1.set_title("a v e; t = {}".format(ST))
-    p1.set_xlabel("a [AU]")
-    p1.set_ylabel("e ")
-    p2.vlines(minA, 0, np.pi/2)
-    p2.vlines(maxA, 0, np.pi/2)
-    p2.set_xlim(37, 50)
-    p2.set_ylim(0,np.pi/2)
-    p2.set_title("a v i; t = {}".format(ST))
-    p2.set_xlabel("a [AU]")
-    p2.set_ylabel("i")
-    p1.legend()
-    plt.savefig('{}/ave_avi_plot'.format(subDirTemp))
+            phi[j][i] = (3*lam[j][i] - 2*lam[4][i] - pom[j][i])%(2*np.pi)
 
-    # pointer to get the hashes of particles still alive
-
-    hashesParticles = np.zeros(sim.N,dtype="uint32")
-    sim.serialize_particle_data(hash=hashesParticles)
-    #print(hashesParticles)
-
-    intTimes = np.linspace(ST, ET, Nout)
-
-    ### ------------ where we are going to store values ----------------- #####
-    # these are 2D matrices that store the values for each particle, for each timestep
-    # made them have 9999 (or 0 for values that are used to calculate phi) so it's noticeable where particles escaped (values didn't store)
-
-    l = np.zeros((Ntotal,Nout))
-    p = np.zeros((Ntotal,Nout))
-    a = np.ones((Ntotal,Nout))*9999
-    e = np.ones((Ntotal,Nout))*9999
-    lasc_node = np.ones((Ntotal,Nout))*9999
-    arg_peri = np.ones((Ntotal,Nout))*9999
-    t_anom = np.ones((Ntotal,Nout))*9999
-    incl = np.ones((Ntotal,Nout))*9999
-    phi = np.zeros((Ntotal,Nout))
-    M_anom = np.ones((Ntotal,Nout))*9999
-    xvals = np.ones((Ntotal,Nout))*9999
-    yvals = np.ones((Ntotal,Nout))*9999
-    timeArray = np.ones(Nout)*9999
-    peri = np.ones((Ntotal, Nout))*9999
-
-
-    mln_arr = []
-    mlp_arr = []
-    pj_arr = []
-    a_arr = []
-    e_arr = []
-    inc_arr = []
-    lasc_node_arr = []
-    arg_peri_arr = []
-    t_anom_arr = []
-    M_anom_arr = []
-    x_arr = []
-    y_arr = []
-
-    #print(sim.exit_max_distance)
-
-
-    for i,times in enumerate(intTimes):
-        while sim.t < times:
-            try:
-                #sim.ri_whfast.recalculate_coordinates_this_timestep = 1
-                sim.integrate(times, exact_finish_time = 0)
-            except rebound.Escape as error:
-                #print(error)
-                for part in range(sim.N):
-                    psim = sim.particles[part]
-                    dist = psim.x*psim.x + psim.y*psim.y + psim.z*psim.z
-                    if dist > sim.exit_max_distance**2:
-                        index = psim.hash
-    #                     print("particle with hash {} escaped".format(index))
-                sim.remove(hash=index)
-                #sim.ri_whfast.recalculate_coordinates_this_timestep = 1
-        #sim.integrator_synchronize()
-        for j, j_hash in enumerate(hashesParticles[1:]):
-    #         print("j: {} ; hash: {}".format(j, j_hash))
-            try: 
-                ps = sim.particles[h(c_uint32(j_hash))]
-                l[j][i] = ps.calculate_orbit().l
-                p[j][i] = ps.calculate_orbit().pomega
-                a[j][i] = ps.calculate_orbit().a
-                e[j][i] = ps.calculate_orbit().e
-                incl[j][i] = ps.calculate_orbit().inc
-                lasc_node[j][i] = ps.calculate_orbit().Omega 
-                arg_peri[j][i] = ps.calculate_orbit().omega
-                t_anom[j][i] = ps.calculate_orbit().f
-                M_anom[j][i] = ps.calculate_orbit().M
-                xvals[j][i] = ps.x
-                yvals[j][i] = ps.y
-            except rebound.ParticleNotFound as error: 
-                # since particles escaping as we store/integrate
-                pass
-    #             print("idk {}".format(error))
-
-            #renaming values
-            mlp = l[j][i]
-            pj = p[j][i]
-            mln = l[3][i]
-            sem = a[j][i]
-            ecc = e[j][i]
-            inc = incl[j][i]
-            lan = lasc_node[j][i]
-            ap = arg_peri[j][i]
-            ta = t_anom[j][i]
-            ma = M_anom[j][i]
-            x = xvals[j][i]
-            y = yvals[j][i]
-            
-
-
-            #appending to cleaned up arrays
-            mln_arr.append(mln)
-            mlp_arr.append(mlp)
-            pj_arr.append(pj)
-            a_arr.append(sem)
-            e_arr.append(ecc)
-            inc_arr.append(inc)
-            lasc_node_arr.append(lan)
-            arg_peri_arr.append(ap)
-            t_anom_arr.append(ta)
-            M_anom_arr.append(ma)
-            x_arr.append(x)
-            y_arr.append(y)
-
-            peri[j][i] = sem*(1-ecc)
-
-            phi_temp = 3.*mlp - 2.*mln - pj   
-            phi[j][i] = phi_temp%(2*np.pi)
-
-    print("done: after short int {} particles left".format(sim.N))
-
-
-    resonant_particles = []
-    count = 0        
-    for i in range(Ntotal):
-        phi_i = phi[i]
-        if (all(phi[i] < 355*np.pi/180) and all(phi[i] > 5*np.pi/180)):
-            #print(phi_i)
-            resonant_particles.append(i)
-            count +=1
-
-            #plt.figure(figsize=(15,10))
-            #plt.title('Resonant angle libration', fontsize = 24)
-            #plt.xlabel('Time(years)', fontsize = 18)
-            #plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-            #plt.scatter(intTimes,phi_i, marker = '.',s = 10)
-            #plt.ylim(0, 2*np.pi)
-            #plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
-            #plt.clf()
-
-    with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
-        for i in resonant_particles:
-             my_file.write(str(i)+"\n")
-
-
-
-    nonresonant_particles = []
-    count_n = 0        
-    for j in range(Ntotal):
-        phi_n = phi[j]
-        if (any(phi[j] > 355*np.pi/180) and any(phi[j] < 5*np.pi/180)):
-            #print(phi_n)
-            nonresonant_particles.append(j)
-            count_n +=1
-
-            #plt.figure(figsize=(15,10))
-            #plt.title('Resonant angle circulation', fontsize = 24)
-            #plt.xlabel('Time(years)', fontsize = 18)
-            #plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-            #plt.scatter(intTimes,phi_n, marker = '.',s = 10)
-            #plt.ylim(0,2*np.pi)
-            #plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
-            #plt.clf()
-
-    with open("{}/Particles_not_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
-        for i in nonresonant_particles:
-            my_file.write(str(i)+"\n")
-
-
-
-    deltaTheta = np.zeros((Ntotal, Nout))
-    deltaThetaArr = []
-
-    rotate_diff = []
-    for i in range(Nout):
-        for j in range(Ntotal):
-            Neptune_xsim = xvals[3][i]
-            Neptune_ysim = yvals[3][i]
+            Neptune_xsim = xvals[4][i]
+            Neptune_ysim = yvals[4][i]
 
             xsim = xvals[j][i]
             ysim = yvals[j][i]
             theta_sim = np.arctan2(ysim,xsim)
 
-
-            #xsur = 29.06807239827766   
-            #ysur = -7.125912195043246
             xsur = 26.85758046958696
             ysur = -13.32890006819031
-            # for julian date ? 
+            # for julian date ? FILL THIS OUT
             theta_sur = np.arctan2(ysur,xsur)
 
             #difference of both angles
             new_theta = theta_sim - theta_sur
             deltaTheta[j][i] = new_theta
-            deltaThetaArr.append(new_theta)
-            #new theta is added to the lasc of all the giant planets and the test particles
 
-            rotate_diff.append(new_theta)
 
     #Applying rotation to array of lasc values by adding rotate_diff values to corresponding values in rotated_longitude array
-    rotated_longitude = np.zeros((Ntotal, Nout))
+    rotated_longitude = np.empty((Nparticles, Nout))
 
     for i in range(len(lasc_node[0])):
         for j in range(len(lasc_node)):
@@ -577,6 +347,102 @@ def check_resonance(short_filename, Nparticles, Nout):
         pamp = (np.max(phi[i]) - np.min(phi[i]))/2
         phiAmp.append(pamp)
 
+    #################### ------------ NOW check for resonance -----------  ################
+
+    resonant_particles = []
+    nonresonant_particles = [] 
+    count = 0   
+    count_n = 0     
+
+    phi_min = 5*np.pi/180
+    phi_max = 355*np.pi/180
+
+    for i in range(Nparticles):
+        try:
+            if (all(phi[i] < phi_max) and all(phi[i] > phi_min)):
+
+                print("in resonance")
+                print(i)
+                resonant_particles.append(i)
+                count +=1
+
+                plt.figure(figsize=(15,10))
+                plt.title('Resonant angle libration', fontsize = 24)
+                plt.xlabel('Time(years)', fontsize = 18)
+                plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+                plt.scatter(time,phi[i], marker = '.',s = 10)
+                plt.ylim(0, 2*np.pi)
+                plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
+                plt.clf()
+
+            else: 
+                nonresonant_particles.append(i)
+                print("not in resonance")
+                print(i)
+                count_n +=1
+
+                plt.figure(figsize=(15,10))
+                plt.title('Resonant angle circulation', fontsize = 24)
+                plt.xlabel('Time(years)', fontsize = 18)
+                plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+                plt.scatter(time,phi[j], marker = '.',s = 10)
+                plt.ylim(0,2*np.pi)
+                plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,j))  
+                plt.clf()
+        except RuntimeWarning:
+            print(phi[i])
+
+
+    with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
+        for i in resonant_particles:
+             my_file.write(str(i)+"\n")
+
+    with open("{}/Particles_not_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
+        for j in nonresonant_particles:
+            my_file.write(str(j)+"\n")
+
+    print("{} particles in resonance".format(count))
+    print("{} particles not in resonance".format(count_n))
+
+
+    ######### --------- now make file with all values ---------- ########
+
+    data_arr = []
+
+    for particle in range(len(lam)):
+        data_arr.append([])   
+        for integration in range(len(lam[0])):
+            #print("Integration: " + str(integration) + "Num: " + str(num))
+            data_arr[particle].append(hashesParticles[particle])
+            data_arr[particle].append(peri[particle][integration])
+            data_arr[particle].append(ax[particle][integration]) 
+            data_arr[particle].append(ecc[particle][integration])
+            data_arr[particle].append(inc[particle][integration])
+            data_arr[particle].append(lasc_node[particle][integration])
+            data_arr[particle].append(arg_peri[particle][integration])
+            data_arr[particle].append(M_anom[particle][integration])
+            data_arr[particle].append(t_anom[particle][integration])
+            data_arr[particle].append(phi[particle][integration])
+            data_arr[particle].append(rotated_longitude[particle][integration])
+            data_arr[particle].append(phiAmp[particle])
+            data_arr[particle].append(xvals[particle][integration])
+            data_arr[particle].append(yvals[particle][integration])
+            if particle in resonant_particles:
+                data_arr[particle].append(True)
+            else:
+                data_arr[particle].append(False)   
+
+    data_arr = np.array(data_arr).reshape(len(lam)*len(lam[0]), 15) # (numParticles*numTimesteps, numOutputs)     
+
+    with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, ST), mode = 'w') as file:
+       datawriter = csv.writer(file, delimiter = ',')
+       datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
+       for d in data_arr:
+           datawriter.writerow(d)
+
+    return 0
+
+    """
     #data array
     data_arr = []
 
