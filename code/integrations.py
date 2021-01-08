@@ -131,8 +131,6 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     # check to see if long int already exists. If so, nothing else needs to happen. 
     #If it doesn't then we continue with long integration
 
-    print("{}{}.bin".format(destinPath,filename))
-
     # ------- Manual Snapshots --------------------------
     try:
         sim = rebound.Simulation("{}{}/{}.bin".format(destinPath,filename,filename))
@@ -347,7 +345,7 @@ def check_resonance_make_plots(short_filename):
 
     for i in range(len(lasc_node[0])):
         for j in range(len(lasc_node)):
-            rotated_longitude[j][i] = lasc_node[j][i] - deltaTheta[3][i]
+            rotated_longitude[j][i] = lasc_node[j][i] - deltaTheta[4][i]
 
     phiAmp = []
 
@@ -393,9 +391,9 @@ def check_resonance_make_plots(short_filename):
                 plt.title('Resonant angle circulation', fontsize = 24)
                 plt.xlabel('Time(years)', fontsize = 18)
                 plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-                plt.scatter(time,phi[j], marker = '.',s = 10)
+                plt.scatter(time,phi[i], marker = '.',s = 10)
                 plt.ylim(0,2*np.pi)
-                plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,j))  
+                plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
                 plt.clf()
         except RuntimeWarning:
             print(phi[i])
@@ -446,6 +444,13 @@ def check_resonance_make_plots(short_filename):
        datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
        for d in data_arr:
            datawriter.writerow(d)
+
+
+    # now get a random subset of resonant and nonresonant particles and plot to make sure things look good
+
+    # first for resonant
+
+
 
     return 0
     """
