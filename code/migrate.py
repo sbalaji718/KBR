@@ -3,7 +3,7 @@ import numpy as np
 import subprocess
 import concurrent.futures
 import os
-from integrations import long_integration, short_integration, check_resonance#, kozai_check, integrate_3_5bill_more
+from integrations import long_integration, short_integration, check_resonance_make_plots#, kozai_check, integrate_3_5bill_more
 
 
 # make function needed for multiprocessing
@@ -18,19 +18,24 @@ def do_integration(intN):
     maxA = 40.0
     minE = 0.0
     maxE = 0.6
-    # maxD = 10
-    Nparticles = 10
-    timearr = np.array([0, 1e1, 1e2, 1e4])    
+    Nparticles = 100
+    timearr = np.array([0, 1e1, 1e2])
 
-    longsim, filename = long_integration(intN, minA, maxA, minE, maxE, timearr, Nparticles)
+    # let's say you already have a long integration. Then the last argument is long_int_file = filename    
+    # filename = "Jan082021.01.28_part10_time100.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0"
+
+    longsim, filename = long_integration(intN, minA, maxA, minE, maxE, timearr, Nparticles) #, long_int_file = filename)
 
     #now do short integration
     # arguments:int_count, simarchive, sim_length, indexSimulation, filename    
     # return sim right now
     # we want to do 3 short integrations starting with time 0, 10%totalTime, and totalTime
 
-    shortSim0 = short_integration(intN, longsim, 100, 0, filename)
-    checkres = check_resonance(shortSim0, Nparticles, 1000)
+    shortSim0 = short_integration(intN, longsim, 1e5, 0, filename)
+    checkres0 = check_resonance_make_plots(shortSim0)
+
+    # shortSim1 = short_integration(intN, longsim, 1e5, -1, filename)
+    # checkres1 = check_resonance_make_plots(shortSim1)
 
 
     return filename
