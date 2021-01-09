@@ -34,6 +34,22 @@ def get_i():
 
     return(num)
 
+def calc_xyz_plane(a, e, i, Om, w, f):
+    """calculating x y and z given 6 orbital parameters"""
+    P1 = np.array([np.cos(w), -np.sin(w), 0, np.sin(w), np.cos(w), 0, 0, 0, 1]).reshape(3,3)
+    P2 = np.array([1, 0, 0, 0, np.cos(i), -np.sin(i), 0, np.sin(i), np.cos(i)]).reshape(3,3)
+    P3 = np.array([np.cos(Om), -np.sin(Om), 0, np.sin(Om), np.cos(Om), 0, 0, 0, 1]).reshape(3,3)
+    r = a*(1-e*e)/(1 + e*np.cos(f))
+    rf = np.zeros(3).reshape(3,1)
+    rf[0] = r*np.cos(f)
+    rf[1] = r*np.sin(f)
+    
+    t1 = np.matmul(P3,P2)
+    t2 = np.matmul(t1, P1)
+    t3 = np.matmul(t2, rf)
+    
+    return t3
+
 
 def setupPlanetBinary():
     sim = rebound.Simulation()
@@ -251,12 +267,6 @@ def check_resonance_make_plots(short_filename):
     print(short_filename)
     short_bin = rebound.SimulationArchive("{}/{}".format(subDirTemp,short_filename))
 
-    print("short_bin")
-    print(short_bin)
-
-    print("short_bin[-1]")
-    print(short_bin[-1])
-
     Nparticles = short_bin[-1].N
     Nout = len(short_bin)
     ST = short_bin.tmax
@@ -268,25 +278,25 @@ def check_resonance_make_plots(short_filename):
 
     ################### ------------- arrays to record values ------------ #####################
 
-    ax  = np.empty((Nparticles,Nout))
-    ecc = np.empty((Nparticles,Nout))
-    inc = np.empty((Nparticles,Nout))
-    lam = np.empty((Nparticles,Nout))
-    pom = np.empty((Nparticles,Nout))
+    ax  = np.zeros((Nparticles,Nout))
+    ecc = np.zeros((Nparticles,Nout))
+    inc = np.zeros((Nparticles,Nout))
+    lam = np.zeros((Nparticles,Nout))
+    pom = np.zeros((Nparticles,Nout))
     phi = np.zeros((Nparticles,Nout))
 
-    lasc_node = np.empty((Nparticles,Nout))
-    arg_peri = np.empty((Nparticles,Nout))
-    t_anom = np.empty((Nparticles,Nout))
-    M_anom = np.empty((Nparticles,Nout))
-    peri = np.empty((Nparticles,Nout))
-    xvals = np.empty((Nparticles,Nout))
-    yvals = np.empty((Nparticles,Nout))
+    lasc_node = np.zeros((Nparticles,Nout))
+    arg_peri = np.zeros((Nparticles,Nout))
+    t_anom = np.zeros((Nparticles,Nout))
+    M_anom = np.zeros((Nparticles,Nout))
+    peri = np.zeros((Nparticles,Nout))
+    xvals = np.zeros((Nparticles,Nout))
+    yvals = np.zeros((Nparticles,Nout))
 
-    deltaTheta = np.empty((Nparticles, Nout)) # needed to make rotation to observed Neptune frame
+    deltaTheta = np.zeros((Nparticles, Nout)) # needed to make rotation to observed Neptune frame
 
 
-    time = np.empty(Nout)
+    time = np.zeros(Nout)
 
     ######################--------------- record values into arrays ------####################
     ct = 0
@@ -341,7 +351,7 @@ def check_resonance_make_plots(short_filename):
 
 
     #Applying rotation to array of lasc values by adding rotate_diff values to corresponding values in rotated_longitude array
-    rotated_longitude = np.empty((Nparticles, Nout))
+    rotated_longitude = np.zeros((Nparticles, Nout))
 
     for i in range(len(lasc_node[0])):
         for j in range(len(lasc_node)):
@@ -364,39 +374,36 @@ def check_resonance_make_plots(short_filename):
     phi_max = 355*np.pi/180
 
     for i in range(Nparticles):
-        try:
-            if (all(phi[i] < phi_max) and all(phi[i] > phi_min)):
+        if (all(phi[i] < phi_max) and all(phi[i] > phi_min)):
 
-                print("in resonance")
-                print(i)
-                resonant_particles.append(i)
-                count +=1
+            # print("in resonance")
+            # print(i)
+            resonant_particles.append(i)
+            count +=1
 
-                plt.figure(figsize=(15,10))
-                plt.title('Resonant angle libration', fontsize = 24)
-                plt.xlabel('Time(years)', fontsize = 18)
-                plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-                plt.scatter(time,phi[i], marker = '.',s = 10)
-                plt.ylim(0, 2*np.pi)
-                plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
-                plt.clf()
+            # plt.figure(figsize=(15,10))
+            # plt.title('Resonant angle libration', fontsize = 24)
+            # plt.xlabel('Time(years)', fontsize = 18)
+            # plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+            # plt.scatter(time,phi[i], marker = '.',s = 10)
+            # plt.ylim(0, 2*np.pi)
+            # plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
+            # plt.clf()
 
-            else: 
-                nonresonant_particles.append(i)
-                print("not in resonance")
-                print(i)
-                count_n +=1
+        else: 
+            nonresonant_particles.append(i)
+            # print("not in resonance")
+            # print(i)
+            count_n +=1
 
-                plt.figure(figsize=(15,10))
-                plt.title('Resonant angle circulation', fontsize = 24)
-                plt.xlabel('Time(years)', fontsize = 18)
-                plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-                plt.scatter(time,phi[i], marker = '.',s = 10)
-                plt.ylim(0,2*np.pi)
-                plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
-                plt.clf()
-        except RuntimeWarning:
-            print(phi[i])
+            # plt.figure(figsize=(15,10))
+            # plt.title('Resonant angle circulation', fontsize = 24)
+            # plt.xlabel('Time(years)', fontsize = 18)
+            # plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+            # plt.scatter(time,phi[i], marker = '.',s = 10)
+            # plt.ylim(0,2*np.pi)
+            # plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
+            # plt.clf()
 
 
     with open("{}/Particles_in_resonance_{}.txt".format(subDirTemp, np.round(ST)), "w+") as my_file:                               
@@ -449,6 +456,95 @@ def check_resonance_make_plots(short_filename):
     # now get a random subset of resonant and nonresonant particles and plot to make sure things look good
 
     # first for resonant
+    random_resonant = np.random.choice(resonant_particles, int(0.2*len(resonant_particles)), replace = False)
+    random_nonresonant = np.random.choice(nonresonant_particles, int(0.1*len(nonresonant_particles)), replace = False)
+
+
+    # set up arrays to plot in rotated frame
+    x_arr_rot = []
+    y_arr_rot = []
+
+    print(ax.shape)
+    print(ecc.shape)
+
+
+    print(ax[1,:])
+
+    for j in range(Nparticles):
+        # print(j)
+        for i in range(Nout):
+            # print(i)
+            x, y, z = calc_xyz_plane(ax[j, i], ecc[j, i], inc[j, i], rotated_longitude[j, i], arg_peri[j, i], t_anom[j, i])
+            # print(ax[j,i])
+            # print(ecc[j,i])
+            # print(inc[j,i])
+            # print(rotated_longitude[j,i])
+            # print(arg_peri[j,i])
+            # print(t_anom[j,i])
+            # print(x,y,z)
+            x_arr_rot.append(x)
+            y_arr_rot.append(y)
+
+    x_arr_rot = np.array(x_arr_rot).reshape(Nparticles, Nout)
+    y_arr_rot = np.array(y_arr_rot).reshape(Nparticles, Nout)
+
+    for i in random_resonant:
+        fig, axe = plt.subplots(2,2,figsize = (10,8))
+        axe[0,0].plot(time, ax[i,:], '.', label = "semi major axis")
+        axe[0,0].set_ylabel("semi major axis [AU]")
+        axe[0,1].plot(time, phi[i,:])
+        axe[0,1].set_ylabel('phi [radians]')
+        axe[1,0].plot(time, inc[i,:], '.', label = "inclination")
+        axe[1,0].plot(time, ecc[i,:], '.', label = "eccentricity")
+        axe[1,0].legend()
+        axe[1,1].plot(x_arr_rot[i,:], y_arr_rot[i,:], '.')
+        axe[1,1].plot(xsur, ysur, 'o', markersize = 15)
+        axe[1,1].set_xlabel("X [AU]")
+        axe[1,1].set_ylabel("Y [AU]")
+        axe[1,1].axis('equal')
+        plt.savefig("{}/resonant_particle_{}".format(irDir,i))
+
+        fig1, axe1 = plt.subplots(2,2,figsize = (10,8))
+        axe1[0,0].plot(time, lasc_node[i,:], '.', label = "normal")
+        axe1[0,0].plot(time, rotated_longitude[i,:], '.', label = "rotated")
+        axe1[0,0].legend()
+        axe1[0,0].set_ylabel("Longitude of ascending node")
+        axe1[0,1].plot(time, arg_peri[i,:])
+        axe1[0,1].set_ylabel('argument of pericenter')
+        axe1[1,0].plot(time, t_anom[i,:], '.', label = "inclination")
+        axe1[1,0].set_ylabel("True Anomoly")
+        axe1[1,1].plot(time, M_anom[i,:], '.')
+        axe1[1,1].set_ylabel("Mean Anomoly")
+        plt.savefig("{}/resonant_particle_angles{}".format(irDir,i))
+
+    for i in random_nonresonant:
+        fig, axe = plt.subplots(2,2,figsize = (10,8))
+        axe[0,0].plot(time, ax[i,:], '.', label = "semi major axis")
+        axe[0,0].set_ylabel("semi major axis [AU]")
+        axe[0,1].plot(time, phi[i,:])
+        axe[0,1].set_ylabel('phi [radians]')
+        axe[1,0].plot(time, inc[i,:], '.', label = "inclination")
+        axe[1,0].plot(time, ecc[i,:], '.', label = "eccentricity")
+        axe[1,0].legend()
+        axe[1,1].plot(x_arr_rot[i,:], y_arr_rot[i,:], '.')
+        axe[1,1].plot(xsur, ysur, 'o', markersize = 15)
+        axe[1,1].set_xlabel("X [AU]")
+        axe[1,1].set_ylabel("Y [AU]")
+        axe[1,1].axis('equal')
+        plt.savefig("{}/nonresonant_particle_{}".format(nrDir,i))
+
+        fig1, axe1 = plt.subplots(2,2,figsize = (10,8))
+        axe1[0,0].plot(time, lasc_node[i,:], '.', label = "normal")
+        axe1[0,0].plot(time, rotated_longitude[i,:], '.', label = "rotated")
+        axe1[0,0].legend()
+        axe1[0,0].set_ylabel("Longitude of ascending node")
+        axe1[0,1].plot(time, arg_peri[i,:])
+        axe1[0,1].set_ylabel('argument of pericenter')
+        axe1[1,0].plot(time, t_anom[i,:], '.', label = "inclination")
+        axe1[1,0].set_ylabel("True Anomoly")
+        axe1[1,1].plot(time, M_anom[i,:], '.')
+        axe1[1,1].set_ylabel("Mean Anomoly")
+        plt.savefig("{}/nonresonant_particle_angles{}".format(nrDir,i))
 
 
 
