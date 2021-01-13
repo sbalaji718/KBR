@@ -103,17 +103,6 @@ def setupSimulationFromArchive(int_count, minA, maxA, minE, maxE, Nparticles):
 
 
     print("added {} test particles".format(Nparticles))
-    
-
-    #simulation properties
-    sim.dt = 0.2
-    sim.integrator = 'whfast'
-    sim.ri_whfast.safe_mode = 1
-    #sim.ri_whfast.corrector = 11 
-    sim.move_to_com()            # move particles to center of momentum frame
-    sim.N_active = 5             # number of active massive particles, includes Sun
-
-    
     return sim
 
 
@@ -253,7 +242,7 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
 
     print("starting short integration {} with start time {}".format(int_count, ST))
     start_sim_time = time.time()
-    short_filename = "{}_short+1e5.bin".format(filename)
+    short_filename = "{}_short+{}.bin".format(filename, sim_length)
     sim.automateSimulationArchive("{}/{}".format(subDirTemp,short_filename), IT/Nout)
     sim.integrate(ET, exact_finish_time = 0)
 
@@ -321,12 +310,12 @@ def check_resonance_make_plots(short_filename):
             arg_peri[p.hash.value][i] = o.omega
             t_anom[p.hash.value][i] = o.f 
             M_anom[p.hash.value][i] = o.M 
-            peri[p.hash.value][i] = ax[p.hash.value][i]*(1- ecc[p.hash.value][i])
+            peri[p.hash.value][i] = o.a*(1-o.e)
             xvals[p.hash.value][i] = p.x 
             yvals[p.hash.value][i] = p.y
-
     
-    # calculate phi and deltaTheta here since need fully recorded arrays
+    # calculate phi and deltaTheta here 
+    # separate from loop above because we need to fill up the arrays first
     for i, sim in enumerate(short_bin):
         n = sim.N
         for j in range(n):

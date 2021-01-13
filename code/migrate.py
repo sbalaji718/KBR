@@ -34,6 +34,9 @@ def do_integration(intN):
     shortSim0 = short_integration(intN, longsim, 1e5, 0, filename)
     checkres0 = check_resonance_make_plots(shortSim0)
 
+    shortKozai = short_integration(intN, longsim, 5e7, 0, filename)
+    # checkKozai = check_kozai()
+
     # shortSim1 = short_integration(intN, longsim, 1e5, -1, filename)
     # checkres1 = check_resonance_make_plots(shortSim1)
 
