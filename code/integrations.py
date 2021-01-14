@@ -4,6 +4,8 @@ import random
 import time 
 import os as osp       
 import shutil
+import matplotlib
+matplotlib.use("Agg") # this line is necessary when running code in Graymalkin (linux machine)
 import matplotlib.pyplot as plt
 from rebound import hash as h
 import csv
@@ -453,11 +455,11 @@ def check_resonance_make_plots(short_filename):
     x_arr_rot = []
     y_arr_rot = []
 
-    print(ax.shape)
-    print(ecc.shape)
+    # print(ax.shape)
+    # print(ecc.shape)
 
 
-    print(ax[1,:])
+    # print(ax[1,:])
 
     for j in range(Nparticles):
         # print(j)
