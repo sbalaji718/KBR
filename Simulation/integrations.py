@@ -4,6 +4,8 @@ import random
 import time 
 import os as osp       
 import shutil
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from rebound import hash as h
 import csv
@@ -121,8 +123,8 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     print("integration number {}; integrating for {} years".format(int_count, sim_length))
 
     #the following code should be set up on first use to locate and store your simulations
-    sourcePath = '/Users/arceliahermosillo/Research/KBR/code/' 
-    destinPath = '/Users/arceliahermosillo/Research/KBR/Long_Integrations/'
+    sourcePath = '/data/galadriel/Sricharan/KBO/KBR/code/' 
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/'
 
 
     if not long_int_file:
@@ -165,16 +167,24 @@ def make_shortint_directories(destinPath, filename, ST, dat):
     sTemp    = 'Short_Integration_time_{}'.format(np.round(ST))
     iRes     = 'In_Resonance'
     nRes     = 'Not_In_Resonance'
+    kozFiles = 'Kozai_Resonance'
+    iKoz     = 'In_Kozai_Resonance'
+    nKoz     = 'Not_In_Kozai_Resonance'
+
+    
 
     global subDirTemp 
     global irDir      
     global nrDir 
 
     mainDir    = '{}{}/'.format(destinPath,filename)
-    dirName    = '{}{}/{}'.format(destinPath,filename,sInt)    
+    dirName    = '{}{}/{}'.format(destinPath,filename,sInt)
     subDirTemp = '{}{}/{}/{}'.format(destinPath,filename,sInt,sTemp)
     irDir      = '{}{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes)
-    nrDir      = '{}{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,nRes) 
+    nrDir      = '{}{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,nRes)
+    kozDir     = '{}{}/{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes,kozFiles)
+    irKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes,kozFiles,iKoz)
+    nrKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes,kozFiles,nKoz)
 
     try:
         osp.mkdir(destinPath)
@@ -210,6 +220,25 @@ def make_shortint_directories(destinPath, filename, ST, dat):
     except FileExistsError:
         pass
         #print("Directory",nrDir,"already exists.")
+    try:
+        osp.mkdir(kozDir)
+        #print ('Directory',kozDir,'created.')
+    except FileExistsError:
+        pass
+        #print("Directory",kozDir,"already exists.")
+    try:
+        osp.mkdir(irKoz)
+        #print ('Directory',irKoz,'created.')
+    except FileExistsError:
+        pass
+        #print("Directory",irKoz,"already exists.")
+
+    try:
+        osp.mkdir(nrKoz)
+        #print ('Directory',nrKoz,'created.')
+    except FileExistsError:
+        pass
+        #print("Directory",nrKoz,"already exists.")
     return True
 
 
@@ -224,7 +253,7 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
     # for the same long integration on the same day. so they don't overwrite eachother
     # dat= time.strftime("%b%d.%H.%M", tm)
     
-    destinPath = '/Users/arceliahermosillo/Research/KBR/Long_Integrations/'
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/'
     longInt    = '{}{}/{}'.format(destinPath,filename,filename)
 
     sa = rebound.SimulationArchive("{}.bin".format(longInt))
@@ -535,6 +564,154 @@ def check_resonance_make_plots(short_filename):
         axe1[1,1].set_ylabel("Mean Anomoly")
         plt.savefig("{}/nonresonant_particle_angles{}".format(nrDir,i))
 
+
+
+
+def check_kozai_make_plots(short_filename):
+    print(short_filename)
+    short_bin = rebound.SimulationArchive("{}/{}".format(subDirTemp,short_filename))
+
+    Nparticles = short_bin[-1].N
+    Nout = len(short_bin)
+    ST = short_bin.tmax
+
+    print("Nparticles: {}".format(Nparticles))
+    print("Nout: {}".format(Nout))
+    print("ST: {}".format(ST))
+
+
+    ################### ------------- arrays to record values ------------ #####################
+
+    ax  = np.zeros((Nparticles,Nout))
+    ecc = np.zeros((Nparticles,Nout))
+    inc = np.zeros((Nparticles,Nout))
+    lam = np.zeros((Nparticles,Nout))
+    pom = np.zeros((Nparticles,Nout))
+    phi = np.zeros((Nparticles,Nout))
+
+    lasc_node = np.zeros((Nparticles,Nout))
+    arg_peri = np.zeros((Nparticles,Nout))
+    t_anom = np.zeros((Nparticles,Nout))
+    M_anom = np.zeros((Nparticles,Nout))
+    peri = np.zeros((Nparticles,Nout))
+    xvals = np.zeros((Nparticles,Nout))
+    yvals = np.zeros((Nparticles,Nout))
+
+    deltaTheta = np.zeros((Nparticles, Nout)) # needed to make rotation to observed Neptune frame
+
+
+    time = np.zeros(Nout)
+
+    ######################--------------- record values into arrays ------####################
+    ct = 0
+    for i, sim in enumerate(short_bin):
+        ct += 1
+        n = sim.N
+        # print(len(short_bin))
+        hashesParticles = np.zeros(sim.N,dtype="uint32")
+        sim.serialize_particle_data(hash=hashesParticles)
+        time[i] = sim.t
+        com = sim.calculate_com()
+        for j in range(n-1):
+            p = sim.particles[j+1]
+            o = p.calculate_orbit(com)
+            # print("hash: {}".format(p.hash.value))
+            ax[p.hash.value][i] = o.a
+            ecc[p.hash.value][i] = o.e
+            inc[p.hash.value][i] = o.inc
+            lam[p.hash.value][i] = o.l
+            pom[p.hash.value][i] = o.pomega
+            lasc_node[p.hash.value][i] = o.Omega
+            arg_peri[p.hash.value][i] = o.omega
+            t_anom[p.hash.value][i] = o.f 
+            M_anom[p.hash.value][i] = o.M 
+            peri[p.hash.value][i] = o.a*(1-o.e)
+            xvals[p.hash.value][i] = p.x 
+            yvals[p.hash.value][i] = p.y
+    
+    # calculate phi and deltaTheta here 
+    # separate from loop above because we need to fill up the arrays first
+    for i, sim in enumerate(short_bin):
+        n = sim.N
+        for j in range(n):
+            phi[j][i] = (3*lam[j][i] - 2*lam[4][i] - pom[j][i])%(2*np.pi)
+
+
+    #################### ------------ NOW check for resonance -----------  ################
+
+    resonant_particles = []
+    nonresonant_particles = [] 
+    kozai_particles = []
+    nonkozai_particles = []
+    count = 0   
+    count_n = 0     
+
+    phi_min = 5*np.pi/180
+    phi_max = 355*np.pi/180
+    
+    low_kozai_min = 5*np.pi/180
+    low_kozai_max = 175*np.pi/180
+    high_kozai_min = 185*np.pi/180
+    high_kozai_max = 355*np.pi/180
+
+    for i in range(Nparticles):
+        if (all(phi[i] < phi_max) and all(phi[i] > phi_min)):
+
+            # print("in resonance")
+            # print(i)
+            resonant_particles.append(i)
+            count +=1
+            if all(arg_peri[i]>low_kozai_min) and all(arg_peri[i]<low_kozai_max):
+                kozai_particles.append(i)
+            elif ll(arg_peri[i]>high_kozai_min) and all(arg_peri[i]<high_kozai_max):
+                kozai_particles.append(i)
+            else:
+                nonkozai_particles.append(i)
+            # plt.figure(figsize=(15,10))
+            # plt.title('Resonant angle libration', fontsize = 24)
+            # plt.xlabel('Time(years)', fontsize = 18)
+            # plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+            # plt.scatter(time,phi[i], marker = '.',s = 10)
+            # plt.ylim(0, 2*np.pi)
+            # plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
+            # plt.clf()
+
+        else: 
+            nonresonant_particles.append(i)
+            # print("not in resonance")
+            # print(i)
+            count_n +=1
+
+            # plt.figure(figsize=(15,10))
+            # plt.title('Resonant angle circulation', fontsize = 24)
+            # plt.xlabel('Time(years)', fontsize = 18)
+            # plt.ylabel('Resonant argument (degrees)', fontsize = 18)
+            # plt.scatter(time,phi[i], marker = '.',s = 10)
+            # plt.ylim(0,2*np.pi)
+            # plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
+            # plt.clf()
+
+
+    with open("{}/Particles_in_kozai_{}.txt".format(kozDir, np.round(ST)), "w+") as my_file:                               
+        for i in resonant_particles:
+             my_file.write(str(i)+"\n")
+
+    with open("{}/Particles_not_in_kozai_{}.txt".format(kozDir, np.round(ST)), "w+") as my_file:                               
+        for j in nonresonant_particles:
+            my_file.write(str(j)+"\n")
+
+    print("{} particles in kozai".format(count))
+    print("{} particles not in kozai".format(count_n))
+
+
+    ######### --------- flag kozai particles in csv ---------- ########
+    
+     
+    #with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, ST), mode = 'w') as file:
+       #datawriter = csv.writer(file, delimiter = ',')
+       #datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
+       #for d in data_arr:
+           #datawriter.writerow(d)
 
 
     return 0

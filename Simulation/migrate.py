@@ -19,7 +19,7 @@ def do_integration(intN):
     minE = 0.0
     maxE = 0.6
     Nparticles = 100
-    timearr = np.array([0, 1e1, 1e2])
+    timearr = np.array([0, 1e5, 1e6])
 
     # let's say you already have a long integration. Then the last argument is long_int_file = filename    
     # filename = "Jan082021.01.28_part10_time100.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0"
@@ -32,13 +32,18 @@ def do_integration(intN):
     # we want to do 3 short integrations starting with time 0, 10%totalTime, and totalTime
 
     shortSim0 = short_integration(intN, longsim, 1e5, 0, filename)
-    checkres0 = check_resonance_make_plots(shortSim0)
+    #checkres0 = check_resonance_make_plots(shortSim0)
+    shortSim1 = short_integration(intN, longsim, 1e5, 1, filename)
+    # checkres1 = check_resonance_make_plots(shortSim1)
+    shortSim2 = short_integration(intN, longsim, 1e5, -1, filename)
+    # checkres2 = check_resonance_make_plots(shortSim2)
+
 
     shortKozai = short_integration(intN, longsim, 5e7, 0, filename)
     # checkKozai = check_kozai()
-
-    # shortSim1 = short_integration(intN, longsim, 1e5, -1, filename)
-    # checkres1 = check_resonance_make_plots(shortSim1)
+    shortKozai = short_integration(intN, longsim, 5e7, 1, filename)
+    shortKozai = short_integration(intN, longsim, 5e7, -1, filename)
+    
 
 
     return filename
