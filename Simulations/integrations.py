@@ -9,6 +9,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from rebound import hash as h
 import csv
+import pandas as pd
 
 
 def moveAndCreateDir(sPath, dstDir):
@@ -17,7 +18,7 @@ def moveAndCreateDir(sPath, dstDir):
         shutil.move(sPath,dstDir)
         #print("created directory {} and moved it to {}".format(sPath, dstDir))
     else:
-        # print("directory already exists")
+        #print("directory already exists")
         pass
 
 def prob(i):
@@ -80,7 +81,7 @@ def setupPlanetBinary():
     #simulation properties
     sim.dt = 0.2
     sim.integrator = 'whfast'
-    sim.ri_whfast.safe_mode = 1
+    sim.ri_whfast.safe_mode = 0
     sim.ri_whfast.corrector = 11 
     sim.move_to_com()            # move particles to center of momentum frame
     sim.N_active = 5             # number of active massive particles, includes Sun
@@ -107,9 +108,8 @@ def setupSimulationFromArchive(int_count, minA, maxA, minE, maxE, Nparticles):
     print("added {} test particles".format(Nparticles))
     return sim
 
-
-def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Nparticles, long_int_file= False):
-
+#change long_int_file to False if no existing long integration bin file
+def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Nparticles, long_int_file='/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/Jan282021.23.08_part500_time_10000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0'): 
     """
         running an n body integration and returning the simulation at the end
     """
@@ -123,7 +123,7 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     print("integration number {}; integrating for {} years".format(int_count, sim_length))
 
     #the following code should be set up on first use to locate and store your simulations
-    sourcePath = '/data/galadriel/Sricharan/KBO/KBR/code/' 
+    sourcePath = '/data/galadriel/Sricharan/KBO/KBR/Simulations/' 
     destinPath = '/data/galadriel/Sricharan/KBO/KBR/Long_Integrations/'
 
 
@@ -141,10 +141,15 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     # ------- Manual Snapshots --------------------------
     try:
         sim = rebound.Simulation("{}{}/{}.bin".format(destinPath,filename,filename))
-        print("successfully loaded simulation archive\n")
+        #simulation properties
+        sim.ri_whfast.safe_mode = 0
+        sim.ri_whfast.corrector = 11 
     except:
         print("failed to load simulation archive, loading initial conditions")
         sim = setupSimulationFromArchive(int_count, minA, maxA, minE, maxE, Nparticles)
+        #simulation properties
+        sim.ri_whfast.safe_mode = 0
+        sim.ri_whfast.corrector = 11 
         for t in integration_times:
             sim.integrate(t, exact_finish_time=0)
             print("done: {} ; N particles: {}".format(t, sim.N))
@@ -174,6 +179,7 @@ def make_shortint_directories(destinPath, filename, ST, dat):
     
 
     global subDirTemp 
+    global kozDir
     global irDir      
     global nrDir 
 
@@ -259,6 +265,8 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
     sa = rebound.SimulationArchive("{}.bin".format(longInt))
     sim = sa[indexSimulation] ## see comment above for this 
     ST = sim.t             #(the snapshot time we're using as initial conditions)
+    sim.ri_whfast.safe_mode = 0
+    sim.ri_whfast.corrector = 11 
    
     make_shortint_directories(destinPath, filename, ST, dat)
 
@@ -272,8 +280,12 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
     print("starting short integration {} with start time {}".format(int_count, ST))
     start_sim_time = time.time()
     short_filename = "{}_short+{}.bin".format(filename, sim_length)
-    sim.automateSimulationArchive("{}/{}".format(subDirTemp,short_filename), IT/Nout)
-    sim.integrate(ET, exact_finish_time = 0)
+    if sim_length == 1e5:
+        sim.automateSimulationArchive("{}/{}".format(subDirTemp,short_filename), IT/Nout)
+        sim.integrate(ET, exact_finish_time = 0)
+    else:
+        sim.automateSimulationArchive("{}/{}".format(kozDir,short_filename), IT/Nout)
+        sim.integrate(ET, exact_finish_time = 0)
 
     print("short integration took {} seconds".format(time.time() - start_sim_time))
     print(short_filename)
@@ -667,14 +679,7 @@ def check_kozai_make_plots(short_filename):
                 kozai_particles.append(i)
             else:
                 nonkozai_particles.append(i)
-            # plt.figure(figsize=(15,10))
-            # plt.title('Resonant angle libration', fontsize = 24)
-            # plt.xlabel('Time(years)', fontsize = 18)
-            # plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-            # plt.scatter(time,phi[i], marker = '.',s = 10)
-            # plt.ylim(0, 2*np.pi)
-            # plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(irDir,i))  
-            # plt.clf()
+            
 
         else: 
             nonresonant_particles.append(i)
@@ -682,22 +687,14 @@ def check_kozai_make_plots(short_filename):
             # print(i)
             count_n +=1
 
-            # plt.figure(figsize=(15,10))
-            # plt.title('Resonant angle circulation', fontsize = 24)
-            # plt.xlabel('Time(years)', fontsize = 18)
-            # plt.ylabel('Resonant argument (degrees)', fontsize = 18)
-            # plt.scatter(time,phi[i], marker = '.',s = 10)
-            # plt.ylim(0,2*np.pi)
-            # plt.savefig('{}/Particle {} Phi vs Time Plot.png'.format(nrDir,i))  
-            # plt.clf()
 
 
     with open("{}/Particles_in_kozai_{}.txt".format(kozDir, np.round(ST)), "w+") as my_file:                               
-        for i in resonant_particles:
+        for i in kozai_particles:
              my_file.write(str(i)+"\n")
 
     with open("{}/Particles_not_in_kozai_{}.txt".format(kozDir, np.round(ST)), "w+") as my_file:                               
-        for j in nonresonant_particles:
+        for j in nonkozai_particles:
             my_file.write(str(j)+"\n")
 
     print("{} particles in kozai".format(count))
@@ -706,12 +703,17 @@ def check_kozai_make_plots(short_filename):
 
     ######### --------- flag kozai particles in csv ---------- ########
     
-     
-    #with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, ST), mode = 'w') as file:
-       #datawriter = csv.writer(file, delimiter = ',')
-       #datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
-       #for d in data_arr:
-           #datawriter.writerow(d)
+    #df = pandas.read_csvfile('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, ST)
+    #df["Kozai"] = "0"
+    if df.loc[df['pnumber']] in kozai_particles:
+        df.loc[df['Kozai']] = '1'
+    
+    
+    #with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, ST), mode = 'r') as file:
+    #   datawriter = csv.writer(file, delimiter = ',')
+    #   datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
+    #   for d in data_arr:
+    #       datawriter.writerow(d)
 
 
     return 0
