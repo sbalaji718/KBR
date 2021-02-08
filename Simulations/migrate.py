@@ -3,7 +3,7 @@ import numpy as np
 import subprocess
 import concurrent.futures
 import os
-from integrations import long_integration, short_integration, check_resonance_make_plots#, kozai_check, integrate_3_5bill_more
+from integrations import long_integration, short_integration, kozai_integration, check_resonance_make_plots, check_kozai_make_plots #, integrate_3_5bill_more
 
 
 # make function needed for multiprocessing
@@ -19,10 +19,10 @@ def do_integration(intN):
     minE = 0.0
     maxE = 0.6
     Nparticles = 100
-    timearr = np.array([0, 1e5, 1e6])
+    timearr = np.array([0, 1e6, 1e7])
 
     # let's say you already have a long integration. Then the last argument is long_int_file = filename    
-    # filename = "Jan082021.01.28_part10_time100.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0"
+    #filename = "Jan082021.21.14_part100_time1000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0"
 
     longsim, filename = long_integration(intN, minA, maxA, minE, maxE, timearr, Nparticles) #, long_int_file = filename)
 
@@ -34,15 +34,17 @@ def do_integration(intN):
     shortSim0 = short_integration(intN, longsim, 1e5, 0, filename)
     #checkres0 = check_resonance_make_plots(shortSim0)
     shortSim1 = short_integration(intN, longsim, 1e5, 1, filename)
-    # checkres1 = check_resonance_make_plots(shortSim1)
+    #checkres1 = check_resonance_make_plots(shortSim1)
     shortSim2 = short_integration(intN, longsim, 1e5, -1, filename)
-    # checkres2 = check_resonance_make_plots(shortSim2)
+    #checkres2 = check_resonance_make_plots(shortSim2)
 
 
-    shortKozai = short_integration(intN, longsim, 5e7, 0, filename)
-    # checkKozai = check_kozai()
-    shortKozai = short_integration(intN, longsim, 5e7, 1, filename)
-    shortKozai = short_integration(intN, longsim, 5e7, -1, filename)
+    shortKozai0 = kozai_integration(intN, longsim, 5e7, 0, filename)
+    checkKozai0 = check_kozai_make_plots(shortSim0,shortKozai0)
+    shortKozai1 = kozai_integration(intN, longsim, 5e7, 1, filename)
+    checkKozai1 = check_kozai_make_plots(shortSim1,shortKozai1)
+    shortKozai2 = kozai_integration(intN, longsim, 5e7, -1, filename)
+    checkKozai2 = check_kozai_make_plots(shortSim2,shortKozai2)
     
 
 
@@ -51,7 +53,7 @@ def do_integration(intN):
 
 #multiprocessing 
 #when we run this code, change this number. It determines how many parallel processes are happening
-lenInt = 1
+lenInt = 2
 
 args = np.arange(lenInt)
 
