@@ -4,9 +4,12 @@ import random
 import time 
 import os as osp       
 import shutil
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from rebound import hash as h
 import csv
+import pandas as pd
 
 
 def moveAndCreateDir(sPath, dstDir):
@@ -15,7 +18,7 @@ def moveAndCreateDir(sPath, dstDir):
         shutil.move(sPath,dstDir)
         #print("created directory {} and moved it to {}".format(sPath, dstDir))
     else:
-        # print("directory already exists")
+        #print("directory already exists")
         pass
 
 def prob(i):
@@ -78,7 +81,7 @@ def setupPlanetBinary():
     #simulation properties
     sim.dt = 0.2
     sim.integrator = 'whfast'
-    sim.ri_whfast.safe_mode = 1
+    sim.ri_whfast.safe_mode = 0
     sim.ri_whfast.corrector = 11 
     sim.move_to_com()            # move particles to center of momentum frame
     sim.N_active = 5             # number of active massive particles, includes Sun
@@ -105,9 +108,8 @@ def setupSimulationFromArchive(int_count, minA, maxA, minE, maxE, Nparticles):
     print("added {} test particles".format(Nparticles))
     return sim
 
-
-def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Nparticles, long_int_file= False):
-
+#change long_int_file to False if no existing long integration bin file
+def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Nparticles, long_int_file='Feb032021.22.59_part100_time1000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1'): 
     """
         running an n body integration and returning the simulation at the end
     """
@@ -121,8 +123,8 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     print("integration number {}; integrating for {} years".format(int_count, sim_length))
 
     #the following code should be set up on first use to locate and store your simulations
-    sourcePath = '/Users/arceliahermosillo/Research/KBR/code/' 
-    destinPath = '/Users/arceliahermosillo/Research/KBR/Long_Integrations/'
+    sourcePath = '/data/galadriel/Sricharan/KBO/KBR/Simulations/' 
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Simulation_output/'
 
 
     if not long_int_file:
@@ -139,10 +141,15 @@ def long_integration(int_count, minA, maxA, minE, maxE, integration_times, Npart
     # ------- Manual Snapshots --------------------------
     try:
         sim = rebound.Simulation("{}{}/{}.bin".format(destinPath,filename,filename))
-        print("successfully loaded simulation archive\n")
+        #simulation properties
+        sim.ri_whfast.safe_mode = 0
+        sim.ri_whfast.corrector = 11 
     except:
         print("failed to load simulation archive, loading initial conditions")
         sim = setupSimulationFromArchive(int_count, minA, maxA, minE, maxE, Nparticles)
+        #simulation properties
+        sim.ri_whfast.safe_mode = 0
+        sim.ri_whfast.corrector = 11 
         for t in integration_times:
             sim.integrate(t, exact_finish_time=0)
             print("done: {} ; N particles: {}".format(t, sim.N))
@@ -165,16 +172,27 @@ def make_shortint_directories(destinPath, filename, ST, dat):
     sTemp    = 'Short_Integration_time_{}'.format(np.round(ST))
     iRes     = 'In_Resonance'
     nRes     = 'Not_In_Resonance'
+    kozFiles = 'Kozai_Resonance'
+    iKoz     = 'In_Kozai_Resonance'
+    nKoz     = 'Not_In_Kozai_Resonance'
+
+    
 
     global subDirTemp 
+    global kozDir
     global irDir      
     global nrDir 
+    global irKoz
+    global nrKoz
 
     mainDir    = '{}{}/'.format(destinPath,filename)
-    dirName    = '{}{}/{}'.format(destinPath,filename,sInt)    
+    dirName    = '{}{}/{}'.format(destinPath,filename,sInt)
     subDirTemp = '{}{}/{}/{}'.format(destinPath,filename,sInt,sTemp)
     irDir      = '{}{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes)
-    nrDir      = '{}{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,nRes) 
+    nrDir      = '{}{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,nRes)
+    kozDir     = '{}{}/{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes,kozFiles)
+    irKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes,kozFiles,iKoz)
+    nrKoz      = '{}{}/{}/{}/{}/{}/{}'.format(destinPath,filename,sInt,sTemp,iRes,kozFiles,nKoz)
 
     try:
         osp.mkdir(destinPath)
@@ -210,6 +228,25 @@ def make_shortint_directories(destinPath, filename, ST, dat):
     except FileExistsError:
         pass
         #print("Directory",nrDir,"already exists.")
+    try:
+        osp.mkdir(kozDir)
+        #print ('Directory',kozDir,'created.')
+    except FileExistsError:
+        pass
+        #print("Directory",kozDir,"already exists.")
+    try:
+        osp.mkdir(irKoz)
+        #print ('Directory',irKoz,'created.')
+    except FileExistsError:
+        pass
+        #print("Directory",irKoz,"already exists.")
+
+    try:
+        osp.mkdir(nrKoz)
+        #print ('Directory',nrKoz,'created.')
+    except FileExistsError:
+        pass
+        #print("Directory",nrKoz,"already exists.")
     return True
 
 
@@ -224,12 +261,15 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
     # for the same long integration on the same day. so they don't overwrite eachother
     # dat= time.strftime("%b%d.%H.%M", tm)
     
-    destinPath = '/Users/arceliahermosillo/Research/KBR/Long_Integrations/'
+    print(filename)
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Simulation_output/'
     longInt    = '{}{}/{}'.format(destinPath,filename,filename)
 
     sa = rebound.SimulationArchive("{}.bin".format(longInt))
     sim = sa[indexSimulation] ## see comment above for this 
     ST = sim.t             #(the snapshot time we're using as initial conditions)
+    sim.ri_whfast.safe_mode = 0
+    sim.ri_whfast.corrector = 11 
    
     make_shortint_directories(destinPath, filename, ST, dat)
 
@@ -242,7 +282,9 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
 
     print("starting short integration {} with start time {}".format(int_count, ST))
     start_sim_time = time.time()
-    short_filename = "{}_short+{}.bin".format(filename, sim_length)
+    
+    short_filename = "{}_short+{}.bin".format(filename,sim_length)
+    
     sim.automateSimulationArchive("{}/{}".format(subDirTemp,short_filename), IT/Nout)
     sim.integrate(ET, exact_finish_time = 0)
 
@@ -251,6 +293,54 @@ def short_integration(int_count, simarchive, sim_length, indexSimulation, filena
     return short_filename  
 
     # then make a function that checks for resonance and makes a few plots
+
+
+
+def kozai_integration(int_count, simarchive, sim_length, indexSimulation, filename):
+
+    start_time = time.time()
+
+    tm = time.gmtime()
+    dat= time.strftime("%b%d", tm)
+
+    # do this instead if you plan on running several short integrations 
+    # for the same long integration on the same day. so they don't overwrite eachother
+    # dat= time.strftime("%b%d.%H.%M", tm)
+    
+    print(filename)
+    destinPath = '/data/galadriel/Sricharan/KBO/KBR/Simulation_output/'
+    longInt    = '{}{}/{}'.format(destinPath,filename,filename)
+
+    sa = rebound.SimulationArchive("{}.bin".format(longInt))
+    sim = sa[indexSimulation] ## see comment above for this 
+    ST = sim.t             #(the snapshot time we're using as initial conditions)
+    sim.ri_whfast.safe_mode = 0
+    sim.ri_whfast.corrector = 11 
+   
+    make_shortint_directories(destinPath, filename, ST, dat)
+
+    IT = sim_length         #this is the short integration run time.
+    ET = ST + IT
+    Nout = 1000
+    Nparticles = sim.N -1 #number of objects without the sun
+    npart = sim.N - sim.N_active # number of test particles
+    # sim.exit_max_distance = maxDistance
+
+    print("starting short integration {} with start time {}".format(int_count, ST))
+    start_sim_time = time.time()
+    
+    kozai_filename = "{}_short+{}.bin".format(filename,sim_length)
+    
+    sim.automateSimulationArchive("{}/{}".format(kozDir,kozai_filename), IT/Nout)
+    sim.integrate(ET, exact_finish_time = 0)
+
+    print("kozai integration took {} seconds".format(time.time() - start_sim_time))
+    print(kozai_filename)
+    return kozai_filename  
+
+    # then make a function that checks for resonance and makes a few plots
+
+
 
 def check_resonance_make_plots(short_filename):
     print(short_filename)
@@ -435,7 +525,8 @@ def check_resonance_make_plots(short_filename):
 
     data_arr = np.array(data_arr).reshape(len(lam)*len(lam[0]), 15) # (numParticles*numTimesteps, numOutputs)     
 
-    with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, ST), mode = 'w') as file:
+    #with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename, np.round(ST)), mode = 'w') as file:
+    with open('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename,np.round(ST)), mode = 'w') as file:
        datawriter = csv.writer(file, delimiter = ',')
        datawriter.writerow(['pnumber', 'peri', 'a', 'e', 'i', 'Omega', 'w', 'f', 'M', 'phi', 'Omega_rot', 'libAmp', 'x', 'y', 'resonance'])
        for d in data_arr:
@@ -530,12 +621,179 @@ def check_resonance_make_plots(short_filename):
         axe1[0,1].plot(time, arg_peri[i,:])
         axe1[0,1].set_ylabel('argument of pericenter')
         axe1[1,0].plot(time, t_anom[i,:], '.', label = "inclination")
-        axe1[1,0].set_ylabel("True Anomoly")
+        axe1[1,0].set_ylabel("True Anomaly")
         axe1[1,1].plot(time, M_anom[i,:], '.')
-        axe1[1,1].set_ylabel("Mean Anomoly")
+        axe1[1,1].set_ylabel("Mean Anomaly")
         plt.savefig("{}/nonresonant_particle_angles{}".format(nrDir,i))
 
 
+
+
+def check_kozai_make_plots(short_filename,kozai_filename):
+    print(kozai_filename)
+    short_bin = rebound.SimulationArchive("{}/{}".format(kozDir,kozai_filename))
+
+    Nparticles = short_bin[-1].N
+    Nout = len(short_bin)
+    ST = short_bin.tmax
+
+    print("Nparticles: {}".format(Nparticles))
+    print("Nout: {}".format(Nout))
+    print("ST: {}".format(ST))
+
+
+    ################### ------------- arrays to record values ------------ #####################
+
+    ax  = np.zeros((Nparticles,Nout))
+    ecc = np.zeros((Nparticles,Nout))
+    inc = np.zeros((Nparticles,Nout))
+    lam = np.zeros((Nparticles,Nout))
+    pom = np.zeros((Nparticles,Nout))
+    phi = np.zeros((Nparticles,Nout))
+
+    lasc_node = np.zeros((Nparticles,Nout))
+    arg_peri = np.zeros((Nparticles,Nout))
+    t_anom = np.zeros((Nparticles,Nout))
+    M_anom = np.zeros((Nparticles,Nout))
+    peri = np.zeros((Nparticles,Nout))
+    xvals = np.zeros((Nparticles,Nout))
+    yvals = np.zeros((Nparticles,Nout))
+
+    deltaTheta = np.zeros((Nparticles, Nout)) # needed to make rotation to observed Neptune frame
+
+
+    time = np.zeros(Nout)
+
+    ######################--------------- record values into arrays ------####################
+    ct = 0
+    for i, sim in enumerate(short_bin):
+        ct += 1
+        n = sim.N
+        # print(len(short_bin))
+        hashesParticles = np.zeros(sim.N,dtype="uint32")
+        sim.serialize_particle_data(hash=hashesParticles)
+        time[i] = sim.t
+        com = sim.calculate_com()
+        for j in range(n-1):
+            p = sim.particles[j+1]
+            o = p.calculate_orbit(com)
+            # print("hash: {}".format(p.hash.value))
+            ax[p.hash.value][i] = o.a
+            ecc[p.hash.value][i] = o.e
+            inc[p.hash.value][i] = o.inc
+            lam[p.hash.value][i] = o.l
+            pom[p.hash.value][i] = o.pomega
+            lasc_node[p.hash.value][i] = o.Omega
+            arg_peri[p.hash.value][i] = o.omega
+            t_anom[p.hash.value][i] = o.f 
+            M_anom[p.hash.value][i] = o.M 
+            peri[p.hash.value][i] = o.a*(1-o.e)
+            xvals[p.hash.value][i] = p.x 
+            yvals[p.hash.value][i] = p.y
+    
+    # calculate phi and deltaTheta here 
+    # separate from loop above because we need to fill up the arrays first
+    for i, sim in enumerate(short_bin):
+        n = sim.N
+        for j in range(n):
+            phi[j][i] = (3*lam[j][i] - 2*lam[4][i] - pom[j][i])%(2*np.pi)
+
+
+    #################### ------------ NOW check for resonance -----------  ################
+
+    resonant_particles = []
+    nonresonant_particles = [] 
+    kozai_particles = []
+    nonkozai_particles = []
+    count = 0   
+    count_n = 0     
+
+    phi_min = 5*np.pi/180
+    phi_max = 355*np.pi/180
+    
+    low_kozai_min = 5*np.pi/180
+    low_kozai_max = 175*np.pi/180
+    high_kozai_min = 185*np.pi/180
+    high_kozai_max = 355*np.pi/180
+
+    for i in range(Nparticles):
+        if (all(phi[i] < phi_max) and all(phi[i] > phi_min)):
+
+            # print("in resonance")
+            # print(i)
+            resonant_particles.append(i)
+            count +=1
+            if all(arg_peri[i]>low_kozai_min) and all(arg_peri[i]<low_kozai_max):
+                kozai_particles.append(i)
+                plt.figure(figsize=(15,10))
+                #plt.title(, fontsize = 24)
+                plt.xlabel('Time(years)', fontsize = 18)
+                plt.ylabel('Arg. of Pericenter', fontsize = 18)
+                plt.scatter(time,arg_peri[i], marker = '.',s = 10)
+                plt.ylim(0, 2*np.pi)
+                plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(irKoz,i))  
+                plt.clf()
+            elif all(arg_peri[i]>high_kozai_min) and all(arg_peri[i]<high_kozai_max):
+                kozai_particles.append(i)
+                plt.figure(figsize=(15,10))
+                #plt.title(, fontsize = 24)
+                plt.xlabel('Time(years)', fontsize = 18)
+                plt.ylabel('Arg. of Pericenter', fontsize = 18)
+                plt.scatter(time,arg_peri[i], marker = '.',s = 10)
+                plt.ylim(0, 2*np.pi)
+                plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(irKoz,i))  
+                plt.clf()
+            else:
+                nonkozai_particles.append(i)
+                plt.figure(figsize=(15,10))
+                #plt.title(, fontsize = 24)
+                plt.xlabel('Time(years)', fontsize = 18)
+                plt.ylabel('Arg. of Pericenter', fontsize = 18)
+                plt.scatter(time,arg_peri[i], marker = '.',s = 10)
+                plt.ylim(0, 2*np.pi)
+                plt.savefig('{}/Particle {} omega vs Time Plot.png'.format(nrKoz,i))  
+                plt.clf()
+            
+
+        else: 
+            nonresonant_particles.append(i)
+            # print("not in resonance")
+            # print(i)
+            count_n +=1
+
+
+
+    with open("{}/Particles_in_kozai_{}.txt".format(kozDir, np.round(ST)), "w+") as my_file:                               
+        for i in kozai_particles:
+             my_file.write(str(i)+"\n")
+
+    with open("{}/Particles_not_in_kozai_{}.txt".format(kozDir, np.round(ST)), "w+") as my_file:                               
+        for j in nonkozai_particles:
+            my_file.write(str(j)+"\n")
+
+    print("{} particles in kozai".format(count))
+    print("{} particles not in kozai".format(count_n))
+
+
+    ######### --------- flag kozai particles in csv ---------- ########
+    
+    df = pd.read_csv('{}/{}_data_array_{}.csv'.format(subDirTemp, short_filename, 1e5))
+    df["Kozai"] = 0.0
+    temp_idx = []
+    for p in kozai_particles:
+        idx = df.index[df['pnumber'] == p]
+        temp_idx.append(idx)
+        
+    #temp_idx = np.concatenate(temp_idx)
+    
+    df.loc[temp_idx,'Kozai'] = 1.0
+    
+    df['Kozai_omega'] = arg_peri.ravel()
+    
+    
+    df.to_csv('{}/{}_data_array_{}.csv'.format(subDirTemp,short_filename,1e5))
+    
+   
 
     return 0
     """
