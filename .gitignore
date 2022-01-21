@@ -2,3 +2,5 @@ Long_Integrations
 Plotting_files
 *~
 *.bin
+*.log
+runfile
