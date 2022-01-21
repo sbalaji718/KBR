@@ -1,0 +1,980 @@
+/data/users/arhermos/code
+node056
+Mon Mar 29 18:46:09 PDT 2021
+integration number 0; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 1; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 2; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 3; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 4; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 5; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 6; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 7; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0020606517791748047
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0036935806274414062
+integration number 8; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.003292083740234375
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.004554271697998047
+integration number 9; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.003283977508544922
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.002318143844604492
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0020186901092529297
+integration number 10; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 11; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.001943826675415039
+integration number 12; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 4 with start time 1000000.1998389753
+starting short integration 1 with start time 1000000.1998389753
+starting short integration 2 with start time 1000000.1998389753
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.003067493438720703
+integration number 13; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 0 with start time 1000000.1998389753
+starting short integration 3 with start time 1000000.1998389753
+starting short integration 5 with start time 1000000.1998389753
+integration number 14; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 6 with start time 1000000.1998389753
+successfully loaded simulation archive
+successfully loaded simulation archive
+
+
+long integration is done
+long integration is done
+long Integration took 0.002457141876220703
+long Integration took 0.0029449462890625
+integration number 15; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 16; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 8 with start time 1000000.1998389753
+integration number 17; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0021712779998779297
+integration number 18; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 19; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 20; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+successfully loaded simulation archive
+long integration is done
+
+long Integration took 0.00324249267578125
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.004735708236694336
+
+long integration is done
+starting short integration 7 with start time 1000000.1998389753
+successfully loaded simulation archive
+long Integration took 0.004297018051147461
+
+long integration is done
+long Integration took 0.002874612808227539
+integration number 21; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 22; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 23; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 24; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 9 with start time 1000000.1998389753
+starting short integration 10 with start time 1000000.1998389753
+integration number 25; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 26; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 27; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 28; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+successfully loaded simulation archive
+successfully loaded simulation archive
+
+successfully loaded simulation archive
+
+
+long integration is done
+
+long integration is done
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.0033495426177978516
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.004825592041015625
+long Integration took 0.0062944889068603516
+
+long Integration took 0.005343198776245117
+
+long integration is done
+long integration is done
+long Integration took 0.005907297134399414
+long Integration took 0.004466056823730469
+integration number 29; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 30; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.004896402359008789
+integration number 31; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.004416942596435547
+integration number 32; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 15 with start time 1000000.1998389753
+starting short integration 13 with start time 1000000.1998389753
+integration number 33; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 34; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 35; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 36; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.006259918212890625
+
+successfully loaded simulation archive
+long integration is done
+
+long integration is done
+long Integration took 0.004830598831176758
+starting short integration 11 with start time 1000000.1998389753
+long Integration took 0.0053517818450927734
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.004529237747192383
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0060274600982666016
+successfully loaded simulation archive
+
+long integration is done
+integration number 37; integrating for 4500000000.0 years
+long Integration took 0.0041561126708984375
+reading long integration file that already exists.
+integration number 38; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 12 with start time 1000000.1998389753
+starting short integration 14 with start time 1000000.1998389753
+starting short integration 19 with start time 1000000.1998389753
+starting short integration 20 with start time 1000000.1998389753
+starting short integration 23 with start time 1000000.1998389753
+starting short integration 21 with start time 1000000.1998389753
+starting short integration 17 with start time 1000000.1998389753
+starting short integration 22 with start time 1000000.1998389753
+starting short integration 16 with start time 1000000.1998389753
+starting short integration 18 with start time 1000000.1998389753
+successfully loaded simulation archive
+
+long integration is done
+starting short integration 25 with start time 1000000.1998389753
+long Integration took 0.0057561397552490234
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.005670070648193359
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.007413148880004883
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.005256175994873047
+successfully loaded simulation archive
+
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.0042569637298583984
+
+long integration is done
+long Integration took 0.0043985843658447266
+starting short integration 24 with start time 1000000.1998389753
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.00505828857421875
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.008713483810424805
+starting short integration 32 with start time 1000000.1998389753
+starting short integration 28 with start time 1000000.1998389753
+starting short integration 29 with start time 1000000.1998389753
+starting short integration 38 with start time 1000000.1998389753
+starting short integration 26 with start time 1000000.1998389753
+starting short integration 27 with start time 1000000.1998389753
+starting short integration 30 with start time 1000000.1998389753
+starting short integration 37 with start time 1000000.1998389753
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.010016679763793945
+starting short integration 31 with start time 1000000.1998389753
+starting short integration 33 with start time 1000000.1998389753
+starting short integration 34 with start time 1000000.1998389753
+starting short integration 35 with start time 1000000.1998389753
+starting short integration 36 with start time 1000000.1998389753
+short integration took 7.773334741592407 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1_short+100000.0.bin
+short integration took 7.783914566040039 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0_short+100000.0.bin
+short integration took 7.76773476600647 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27_short+100000.0.bin
+short integration took 7.810097932815552 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20_short+100000.0.bin
+short integration took 7.833284854888916 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3_short+100000.0.bin
+short integration took 7.839710474014282 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32_short+100000.0.bin
+short integration took 7.848596811294556 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13_short+100000.0.bin
+short integration took 7.879659175872803 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2_short+100000.0.bin
+short integration took 7.868073463439941 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30_short+100000.0.bin
+short integration took 7.870810270309448 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28_short+100000.0.bin
+short integration took 7.879445552825928 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26_short+100000.0.bin
+short integration took 7.878222465515137 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33_short+100000.0.bin
+short integration took 7.886711359024048 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17_short+100000.0.bin
+short integration took 7.883227348327637 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29_short+100000.0.bin
+short integration took 7.889898300170898 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17_short+100000.0.bin
+short integration took 7.896984815597534 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25_short+100000.0.bin
+short integration took 7.889080286026001 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34_short+100000.0.bin
+short integration took 7.894696235656738 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37_short+100000.0.bin
+short integration took 7.925684690475464 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8_short+100000.0.bin
+short integration took 7.900186061859131 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35_short+100000.0.bin
+short integration took 7.915619611740112 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31_short+100000.0.bin
+short integration took 7.924256801605225 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16_short+100000.0.bin
+short integration took 7.945695638656616 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10_short+100000.0.bin
+short integration took 7.925069093704224 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36_short+100000.0.bin
+short integration took 7.970976829528809 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19_short+100000.0.bin
+short integration took 7.978400230407715 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11_short+100000.0.bin
+short integration took 7.990753650665283 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6_short+100000.0.bin
+short integration took 8.002524137496948 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4_short+100000.0.bin
+short integration took 8.001859426498413 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5_short+100000.0.bin
+short integration took 7.9955220222473145 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+100000.0.bin
+short integration took 8.009980916976929 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24_short+100000.0.bin
+short integration took 8.008500814437866 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38_short+100000.0.bin
+short integration took 8.023884534835815 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7_short+100000.0.bin
+short integration took 8.02340054512024 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9_short+100000.0.bin
+short integration took 8.02198338508606 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15_short+100000.0.bin
+short integration took 8.018457412719727 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18_short+100000.0.bin
+short integration took 8.02108359336853 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18_short+100000.0.bin
+short integration took 8.048755884170532 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21_short+100000.0.bin
+short integration took 8.108578205108643 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22_short+100000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22_short+100000.0.bin
+15 particles in resonance
+60 particles not in resonance
+12 particles in resonance
+63 particles not in resonance
+12 particles in resonance
+20 particles in resonance
+63 particles not in resonance
+55 particles not in resonance
+9 particles in resonance
+66 particles not in resonance
+18 particles in resonance
+14 particles in resonance
+57 particles not in resonance
+61 particles not in resonance
+19 particles in resonance
+56 particles not in resonance
+17 particles in resonance
+58 particles not in resonance
+17 particles in resonance
+58 particles not in resonance
+12 particles in resonance
+63 particles not in resonance
+19 particles in resonance
+56 particles not in resonance
+16 particles in resonance
+59 particles not in resonance
+19 particles in resonance
+56 particles not in resonance
+18 particles in resonance
+57 particles not in resonance
+11 particles in resonance
+64 particles not in resonance
+18 particles in resonance
+57 particles not in resonance
+14 particles in resonance
+61 particles not in resonance
+19 particles in resonance
+56 particles not in resonance
+15 particles in resonance
+60 particles not in resonance
+18 particles in resonance
+57 particles not in resonance
+15 particles in resonance
+60 particles not in resonance
+14 particles in resonance
+61 particles not in resonance
+23 particles in resonance
+52 particles not in resonance
+13 particles in resonance
+62 particles not in resonance
+22 particles in resonance
+53 particles not in resonance
+13 particles in resonance
+62 particles not in resonance
+8 particles in resonance
+67 particles not in resonance
+14 particles in resonance
+61 particles not in resonance
+20 particles in resonance
+55 particles not in resonance
+20 particles in resonance
+55 particles not in resonance
+18 particles in resonance
+57 particles not in resonance
+15 particles in resonance
+60 particles not in resonance
+14 particles in resonance
+61 particles not in resonance
+16 particles in resonance
+59 particles not in resonance
+24 particles in resonance
+51 particles not in resonance
+20 particles in resonance
+55 particles not in resonance
+15 particles in resonance
+60 particles not in resonance
+18 particles in resonance
+57 particles not in resonance
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30
+starting short integration 30 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36
+starting short integration 36 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26
+starting short integration 26 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37
+starting short integration 37 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28
+starting short integration 28 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20
+starting short integration 27 with start time 0.0
+starting short integration 20 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17
+starting short integration 17 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13
+starting short integration 13 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16
+starting short integration 16 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9
+starting short integration 9 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1
+starting short integration 1 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35
+starting short integration 35 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33
+starting short integration 33 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6
+starting short integration 6 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32
+starting short integration 32 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5
+starting short integration 5 with start time 0.0
+starting short integration 34 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38
+starting short integration 38 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25
+starting short integration 25 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31
+starting short integration 31 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24
+starting short integration 24 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23
+starting short integration 23 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29
+starting short integration 29 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21
+starting short integration 21 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18
+starting short integration 12 with start time 0.0
+starting short integration 18 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15
+starting short integration 15 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19
+starting short integration 19 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2
+starting short integration 2 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14
+starting short integration 10 with start time 0.0
+starting short integration 14 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11
+starting short integration 11 with start time 0.0
+starting short integration 7 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3
+starting short integration 3 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4
+starting short integration 4 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0
+starting short integration 8 with start time 0.0
+starting short integration 0 with start time 0.0
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22
+starting short integration 22 with start time 0.0
+kozai integration took 3317.3780732154846 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3318.818668603897 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3321.7530393600464 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3323.5095143318176 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3323.310613632202 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3322.452835559845 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3324.5167441368103 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+3 particles in resonance
+0 particles in kozai
+3 particles not in kozai
+72 particles not in resonance
+7 particles in resonance
+1 particles in kozai
+6 particles not in kozai
+68 particles not in resonance
+kozai integration took 3327.0797913074493 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+12 particles in resonance
+0 particles in kozai
+12 particles not in kozai
+63 particles not in resonance
+kozai integration took 3328.4803047180176 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+15 particles in resonance
+0 particles in kozai
+15 particles not in kozai
+60 particles not in resonance
+7 particles in resonance
+1 particles in kozai
+6 particles not in kozai
+68 particles not in resonance
+9 particles in resonance
+0 particles in kozai
+9 particles not in kozai
+66 particles not in resonance
+kozai integration took 3332.051425933838 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3335.0050768852234 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3335.0124368667603 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3335.9787249565125 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0_short+50000000.0.bin
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: WHFast convergence issue. Timestep is larger than at least one orbital period.
+  warnings.warn(msg[1:], RuntimeWarning)
+kozai integration took 3336.1702427864075 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3336.506577730179 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3338.001347064972 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+14 particles in resonance
+0 particles in kozai
+14 particles not in kozai
+61 particles not in resonance
+kozai integration took 3337.2944779396057 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3337.6112129688263 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3338.2152490615845 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3340.0529401302338 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+11 particles in resonance
+0 particles in kozai
+11 particles not in kozai
+64 particles not in resonance
+12 particles in resonance
+1 particles in kozai
+11 particles not in kozai
+63 particles not in resonance
+kozai integration took 3340.850178003311 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3340.51372051239 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3340.2809674739838 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3341.4096858501434 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+10 particles in resonance
+0 particles in kozai
+10 particles not in kozai
+65 particles not in resonance
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+kozai integration took 3341.777328014374 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+11 particles in resonance
+0 particles in kozai
+11 particles not in kozai
+64 particles not in resonance
+12 particles in resonance
+0 particles in kozai
+12 particles not in kozai
+63 particles not in resonance
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+kozai integration took 3342.809433221817 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3343.607337474823 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3344.109752893448 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+5 particles in resonance
+1 particles in kozai
+4 particles not in kozai
+70 particles not in resonance
+kozai integration took 3344.1907272338867 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3345.3529069423676 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+9 particles in resonance
+0 particles in kozai
+9 particles not in kozai
+66 particles not in resonance
+9 particles in resonance
+0 particles in kozai
+9 particles not in kozai
+66 particles not in resonance
+kozai integration took 3348.8703248500824 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+kozai integration took 3348.053281068802 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+kozai integration took 3348.352839946747 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+5 particles in resonance
+0 particles in kozai
+5 particles not in kozai
+70 particles not in resonance
+9 particles in resonance
+0 particles in kozai
+9 particles not in kozai
+66 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3351.821756839752 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+10 particles in resonance
+3 particles in kozai
+7 particles not in kozai
+65 particles not in resonance
+kozai integration took 3354.0604803562164 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3356.9319047927856 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: WHFast convergence issue. Timestep is larger than at least one orbital period.
+  warnings.warn(msg[1:], RuntimeWarning)
+kozai integration took 3358.1752762794495 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+5 particles in resonance
+0 particles in kozai
+5 particles not in kozai
+70 particles not in resonance
+6 particles in resonance
+1 particles in kozai
+5 particles not in kozai
+69 particles not in resonance
+kozai integration took 3360.1505568027496 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+7 particles in resonance
+1 particles in kozai
+6 particles not in kozai
+68 particles not in resonance
+kozai integration took 3363.805186510086 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5_short+50000000.0.bin
+Nparticles: 75
+Nout: 1001
+ST: 50000000.0509404
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 119, in worker
+    result = (True, func(*args, **kwds))
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 44, in mapstar
+    return list(map(*args))
+  File "migrate.py", line 56, in do_integration
+    checkKozai0 = check_kozai_make_plots(shortSim0, shortKozai0)
+  File "/data/users/arhermos/code/integrations.py", line 772, in check_kozai_make_plots
+    df = pd.read_csv("{}/{}".format(subDirTemp,short_filename))
+  File "/cm/shared/apps/python3-pandas/pandas/io/parsers.py", line 685, in parser_f
+    return _read(filepath_or_buffer, kwds)
+  File "/cm/shared/apps/python3-pandas/pandas/io/parsers.py", line 457, in _read
+    parser = TextFileReader(fp_or_buf, **kwds)
+  File "/cm/shared/apps/python3-pandas/pandas/io/parsers.py", line 895, in __init__
+    self._make_engine(self.engine)
+  File "/cm/shared/apps/python3-pandas/pandas/io/parsers.py", line 1135, in _make_engine
+    self._engine = CParserWrapper(self.f, **self.options)
+  File "/cm/shared/apps/python3-pandas/pandas/io/parsers.py", line 1917, in __init__
+    self._reader = parsers.TextReader(src, **kwds)
+  File "pandas/_libs/parsers.pyx", line 382, in pandas._libs.parsers.TextReader.__cinit__
+  File "pandas/_libs/parsers.pyx", line 689, in pandas._libs.parsers.TextReader._setup_parser_source
+FileNotFoundError: [Errno 2] File b'/data/users/arhermos/Long_Integrations/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23/Short_Integrations_Jan26/Short_Integration_time_0.0/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+100000.0.bin_data_array_100000.00000133288' does not exist: b'/data/users/arhermos/Long_Integrations/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23/Short_Integrations_Jan26/Short_Integration_time_0.0/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+100000.0.bin_data_array_100000.00000133288'
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "migrate.py", line 86, in <module>
+    results = pool.map(do_integration, args)
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 288, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 670, in get
+    raise self._value
+FileNotFoundError: [Errno 2] File b'/data/users/arhermos/Long_Integrations/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23/Short_Integrations_Jan26/Short_Integration_time_0.0/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+100000.0.bin_data_array_100000.00000133288' does not exist: b'/data/users/arhermos/Long_Integrations/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23/Short_Integrations_Jan26/Short_Integration_time_0.0/Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+100000.0.bin_data_array_100000.00000133288'
+Mon Mar 29 19:42:35 PDT 2021

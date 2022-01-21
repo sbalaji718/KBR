@@ -1,0 +1,816 @@
+/data/users/arhermos/code
+node001
+Mon Feb  8 21:27:56 PST 2021
+integration number 0; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 1; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 2; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0013129711151123047
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0
+integration number 3; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0012180805206298828
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1
+integration number 4; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0010762214660644531
+integration number 5; integrating for 4500000000.0 years
+reading long integration file that already exists.
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3
+successfully loaded simulation archive
+integration number 6; integrating for 4500000000.0 years
+
+long integration is done
+reading long integration file that already exists.
+long Integration took 0.0010914802551269531
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4
+starting short integration 0 with start time 10000000.18112945
+integration number 7; integrating for 4500000000.0 years
+successfully loaded simulation archive
+reading long integration file that already exists.
+
+long integration is done
+long Integration took 0.0010936260223388672
+starting short integration 1 with start time 10000000.18112945
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5
+successfully loaded simulation archive
+integration number 8; integrating for 4500000000.0 years
+
+reading long integration file that already exists.
+long integration is done
+long Integration took 0.003068685531616211
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2
+integration number 9; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 3 with start time 10000000.18112945
+successfully loaded simulation archive
+
+long integration is done
+integration number 10; integrating for 4500000000.0 years
+long Integration took 0.001979827880859375
+reading long integration file that already exists.
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6
+starting short integration 4 with start time 10000000.18112945
+integration number 11; integrating for 4500000000.0 years
+successfully loaded simulation archive
+reading long integration file that already exists.
+
+long integration is done
+long Integration took 0.0010745525360107422
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9
+starting short integration 5 with start time 10000000.18112945
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0023164749145507812
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7
+integration number 12; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+starting short integration 2 with start time 10000000.18112945
+long integration is done
+long Integration took 0.002073526382446289
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8
+successfully loaded simulation archive
+integration number 13; integrating for 4500000000.0 years
+
+long integration is done
+reading long integration file that already exists.
+long Integration took 0.0010721683502197266
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11
+integration number 14; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 6 with start time 10000000.18112945
+integration number 15; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 9 with start time 10000000.18112945
+integration number 16; integrating for 4500000000.0 years
+successfully loaded simulation archive
+successfully loaded simulation archive
+reading long integration file that already exists.
+
+
+long integration is done
+long integration is done
+long Integration took 0.002981901168823242
+long Integration took 0.0010867118835449219
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14
+starting short integration 7 with start time 10000000.18112945
+starting short integration 8 with start time 10000000.18112945
+successfully loaded simulation archive
+integration number 17; integrating for 4500000000.0 years
+
+long integration is done
+reading long integration file that already exists.
+long Integration took 0.0020189285278320312
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13
+starting short integration 11 with start time 10000000.18112945
+integration number 18; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 19; integrating for 4500000000.0 years
+successfully loaded simulation archive
+reading long integration file that already exists.
+
+long integration is done
+long Integration took 0.001199483871459961
+integration number 20; integrating for 4500000000.0 years
+reading long integration file that already exists.
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16
+integration number 21; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 22; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+integration number 23; integrating for 4500000000.0 years
+
+long integration is done
+reading long integration file that already exists.
+long Integration took 0.002148151397705078
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15
+integration number 24; integrating for 4500000000.0 years
+integration number 25; integrating for 4500000000.0 years
+successfully loaded simulation archive
+reading long integration file that already exists.
+reading long integration file that already exists.
+
+long integration is done
+long Integration took 0.003854513168334961
+successfully loaded simulation archive
+
+integration number 26; integrating for 4500000000.0 years
+long integration is done
+reading long integration file that already exists.
+long Integration took 0.0010976791381835938
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0010483264923095703
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0018913745880126953
+starting short integration 14 with start time 10000000.18112945
+successfully loaded simulation archive
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17
+
+starting short integration 10 with start time 10000000.18112945
+long integration is done
+long Integration took 0.0011830329895019531
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21
+integration number 27; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+successfully loaded simulation archive
+
+
+long integration is done
+long integration is done
+starting short integration 13 with start time 10000000.18112945
+long Integration took 0.0011944770812988281
+long Integration took 0.00131988525390625
+integration number 28; integrating for 4500000000.0 years
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23
+reading long integration file that already exists.
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22
+integration number 29; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.002053976058959961
+successfully loaded simulation archive
+successfully loaded simulation archive
+
+
+long integration is done
+long integration is done
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19
+long Integration took 0.0014095306396484375
+long Integration took 0.0014657974243164062
+integration number 30; integrating for 4500000000.0 years
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25
+reading long integration file that already exists.
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24
+integration number 31; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 32; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 16 with start time 10000000.18112945
+integration number 33; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 34; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 35; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.001631021499633789
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27
+starting short integration 15 with start time 10000000.18112945
+integration number 36; integrating for 4500000000.0 years
+reading long integration file that already exists.
+starting short integration 18 with start time 10000000.18112945
+starting short integration 12 with start time 10000000.18112945
+integration number 37; integrating for 4500000000.0 years
+reading long integration file that already exists.
+integration number 38; integrating for 4500000000.0 years
+reading long integration file that already exists.
+successfully loaded simulation archive
+
+long integration is done
+starting short integration 21 with start time 10000000.18112945
+long Integration took 0.0015575885772705078
+successfully loaded simulation archive
+
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.002886533737182617
+
+long integration is done
+long Integration took 0.00152587890625
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31
+successfully loaded simulation archive
+successfully loaded simulation archive
+starting short integration 20 with start time 10000000.18112945
+
+
+long integration is done
+long integration is done
+starting short integration 22 with start time 10000000.18112945
+long Integration took 0.0017397403717041016
+long Integration took 0.0016486644744873047
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32
+starting short integration 17 with start time 10000000.18112945
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0027837753295898438
+successfully loaded simulation archive
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28
+successfully loaded simulation archive
+
+
+long integration is done
+long integration is done
+long Integration took 0.0011162757873535156
+long Integration took 0.002846240997314453
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29
+starting short integration 19 with start time 10000000.18112945
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0025217533111572266
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34
+successfully loaded simulation archive
+
+long integration is done
+long Integration took 0.0018889904022216797
+starting short integration 25 with start time 10000000.18112945
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38
+starting short integration 24 with start time 10000000.18112945
+successfully loaded simulation archive
+
+long integration is done
+successfully loaded simulation archive
+long Integration took 0.0027010440826416016
+starting short integration 26 with start time 10000000.18112945
+
+long integration is done
+long Integration took 0.003421306610107422
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35
+starting short integration 30 with start time 10000000.18112945
+starting short integration 31 with start time 10000000.18112945
+starting short integration 27 with start time 10000000.18112945
+starting short integration 23 with start time 10000000.18112945
+starting short integration 33 with start time 10000000.18112945
+starting short integration 32 with start time 10000000.18112945
+starting short integration 28 with start time 10000000.18112945
+starting short integration 37 with start time 10000000.18112945
+starting short integration 29 with start time 10000000.18112945
+starting short integration 34 with start time 10000000.18112945
+starting short integration 38 with start time 10000000.18112945
+starting short integration 36 with start time 10000000.18112945
+starting short integration 35 with start time 10000000.18112945
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+/home/arhermos/.local/lib/python3.6/site-packages/rebound/simulation.py:691: RuntimeWarning: File in use for SimulationArchive already exists. Snapshots will be appended.
+  warnings.warn(msg[1:], RuntimeWarning)
+kozai integration took 3316.9172184467316 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_25_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+6 particles in resonance
+0 particles in kozai
+6 particles not in kozai
+69 particles not in resonance
+kozai integration took 3321.604594230652 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_17_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3322.5977675914764 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_13_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3323.8138749599457 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_31_short+50000000.0.bin
+Nparticles: 75
+Nout: 1178
+ST: 60000000.199952014
+kozai integration took 3325.55873131752 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_16_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+kozai integration took 3325.9635257720947 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_9_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+14 particles in resonance
+0 particles in kozai
+14 particles not in kozai
+61 particles not in resonance
+kozai integration took 3328.59912443161 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_30_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+6 particles in resonance
+0 particles in kozai
+6 particles not in kozai
+69 particles not in resonance
+kozai integration took 3329.327199935913 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_29_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3330.1666984558105 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_35_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3330.8381564617157 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_15_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3331.9248020648956 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_7_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+6 particles in resonance
+0 particles in kozai
+6 particles not in kozai
+69 particles not in resonance
+kozai integration took 3333.1409957408905 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_3_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3334.162806749344 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_5_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+kozai integration took 3334.451194047928 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_20_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3335.0282096862793 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_22_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+11 particles in resonance
+0 particles in kozai
+11 particles not in kozai
+64 particles not in resonance
+kozai integration took 3336.357727766037 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_28_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+14 particles in resonance
+0 particles in kozai
+14 particles not in kozai
+61 particles not in resonance
+10 particles in resonance
+0 particles in kozai
+10 particles not in kozai
+65 particles not in resonance
+kozai integration took 3337.1391096115112 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_2_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+5 particles in resonance
+0 particles in kozai
+5 particles not in kozai
+70 particles not in resonance
+11 particles in resonance
+0 particles in kozai
+11 particles not in kozai
+64 particles not in resonance
+6 particles in resonance
+0 particles in kozai
+6 particles not in kozai
+69 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3339.2312536239624 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_11_short+50000000.0.bin
+Nparticles: 75
+Nout: 1175
+ST: 60000000.199952014
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+kozai integration took 3340.713211297989 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_4_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3341.3885490894318 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_27_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+kozai integration took 3341.549698829651 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_6_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+kozai integration took 3341.5706884860992 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_19_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+10 particles in resonance
+0 particles in kozai
+10 particles not in kozai
+65 particles not in resonance
+kozai integration took 3341.7468078136444 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_8_short+50000000.0.bin
+Nparticles: 75
+Nout: 1175
+ST: 60000000.199952014
+kozai integration took 3343.003757238388 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_24_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+kozai integration took 3343.5222613811493 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_14_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+kozai integration took 3343.620926618576 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_12_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+kozai integration took 3343.831020593643 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_36_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+5 particles in resonance
+0 particles in kozai
+5 particles not in kozai
+70 particles not in resonance
+kozai integration took 3344.4910604953766 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_1_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+8 particles in resonance
+1 particles in kozai
+7 particles not in kozai
+67 particles not in resonance
+9 particles in resonance
+3 particles in kozai
+6 particles not in kozai
+66 particles not in resonance
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+9 particles in resonance
+0 particles in kozai
+9 particles not in kozai
+66 particles not in resonance
+kozai integration took 3346.207501411438 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_18_short+50000000.0.bin
+Nparticles: 75
+Nout: 1174
+ST: 60000000.199952014
+kozai integration took 3346.8999643325806 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_38_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+9 particles in resonance
+0 particles in kozai
+9 particles not in kozai
+66 particles not in resonance
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+8 particles in resonance
+0 particles in kozai
+8 particles not in kozai
+67 particles not in resonance
+10 particles in resonance
+0 particles in kozai
+10 particles not in kozai
+65 particles not in resonance
+kozai integration took 3348.7609691619873 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_33_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+kozai integration took 3349.047887325287 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_23_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+12 particles in resonance
+1 particles in kozai
+11 particles not in kozai
+63 particles not in resonance
+kozai integration took 3349.286085128784 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_34_short+50000000.0.bin
+Nparticles: 75
+Nout: 1177
+ST: 60000000.199952014
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+kozai integration took 3350.241886615753 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_32_short+50000000.0.bin
+Nparticles: 75
+Nout: 1175
+ST: 60000000.199952014
+8 particles in resonance
+1 particles in kozai
+7 particles not in kozai
+67 particles not in resonance
+3 particles in resonance
+0 particles in kozai
+3 particles not in kozai
+72 particles not in resonance
+kozai integration took 3351.330845594406 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_21_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+4 particles in resonance
+1 particles in kozai
+3 particles not in kozai
+71 particles not in resonance
+6 particles in resonance
+0 particles in kozai
+6 particles not in kozai
+69 particles not in resonance
+5 particles in resonance
+0 particles in kozai
+5 particles not in kozai
+70 particles not in resonance
+kozai integration took 3354.135798931122 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_10_short+50000000.0.bin
+Nparticles: 75
+Nout: 1174
+ST: 60000000.199952014
+kozai integration took 3354.3278152942657 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_37_short+50000000.0.bin
+Nparticles: 75
+Nout: 1175
+ST: 60000000.199952014
+10 particles in resonance
+0 particles in kozai
+10 particles not in kozai
+65 particles not in resonance
+kozai integration took 3356.253435611725 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_26_short+50000000.0.bin
+Nparticles: 75
+Nout: 1175
+ST: 60000000.199952014
+kozai integration took 3356.9202342033386 seconds
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0_short+50000000.0.bin
+Jan232021.07.15_part70_time4500000000.0_A_38.810-40.000_iSig_14_E_0.000-0.600_even_q_0_short+50000000.0.bin
+Nparticles: 75
+Nout: 1176
+ST: 60000000.199952014
+8 particles in resonance
+1 particles in kozai
+7 particles not in kozai
+67 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+6 particles in resonance
+1 particles in kozai
+5 particles not in kozai
+69 particles not in resonance
+7 particles in resonance
+0 particles in kozai
+7 particles not in kozai
+68 particles not in resonance
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 119, in worker
+    result = (True, func(*args, **kwds))
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 44, in mapstar
+    return list(map(*args))
+  File "migrate.py", line 53, in do_integration
+    checkKozai1 = check_kozai_make_plots(shortSim1, shortKozai1)
+  File "/data/users/arhermos/code/integrations.py", line 784, in check_kozai_make_plots
+    df['Kozai_omega'] = arg_peri.ravel()
+  File "/cm/shared/apps/python3-pandas/pandas/core/frame.py", line 3472, in __setitem__
+    self._set_item(key, value)
+  File "/cm/shared/apps/python3-pandas/pandas/core/frame.py", line 3549, in _set_item
+    value = self._sanitize_column(key, value)
+  File "/cm/shared/apps/python3-pandas/pandas/core/frame.py", line 3734, in _sanitize_column
+    value = sanitize_index(value, self.index, copy=False)
+  File "/cm/shared/apps/python3-pandas/pandas/core/internals/construction.py", line 612, in sanitize_index
+    raise ValueError("Length of values does not match length of index")
+ValueError: Length of values does not match length of index
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "migrate.py", line 80, in <module>
+    results = pool.map(do_integration, args)
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 288, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/cm/local/apps/python3/lib/python3.6/multiprocessing/pool.py", line 670, in get
+    raise self._value
+ValueError: Length of values does not match length of index
+Mon Feb  8 22:23:58 PST 2021
