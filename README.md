@@ -1,5 +1,5 @@
 **Purpose**
-We use the python package Rebound to fill semi-major axis (a) and eccentricity (e) space by placing the four giant planets and test particles within certain ranges and integrate up 4.5Gyr. 
+We use the python package Rebound to fill phase space by placing the four giant planets and test particles within certain ranges and integrate up 4.5Gyr. 
 
 **Instructions/Notes**
 Rather than run one long integration with thousands of particles, we use the multiprocessing package to run 100+ simulations simultaneously. The "code" folder contains two .py files that are used to run the simulation ensemble. "Integrations.py" holds all the functions necessary for running the simulation while migrate.py is the run file. 
