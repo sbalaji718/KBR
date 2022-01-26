@@ -10,6 +10,6 @@ For the simulation referenced in the paper, we copied the "code" folder 4 times 
 
 "planetParamsCartesianAU_yr.txt" contains the initial conditions for the four giant planets. The function setupPlanetBinary reads the initial conditions from the textfile and creates a .bin file using those values. This helps with reproducability across different machines. 
 
-**NOTES**
+**NOTES**  
 All data produced by simulations referenced in “Can the 3:2 orbital distribution result from stability sculpting?” was produced using the code in this repository.
 
